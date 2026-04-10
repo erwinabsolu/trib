@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tribartist — Trouve ta subvention musicale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #121212;
+  --bg2: #181818;
+  --bg3: #282828;
+  --green: #1DB954;
+  --white: #FFFFFF;
+  --muted: #B3B3B3;
+  --dimmed: #6A6A6A;
+  --border: rgba(255,255,255,0.08);
+  --gold: #F5C518;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Figtree', sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: rgba(18,18,18,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo { font-size: 18px; font-weight: 800; color: var(--white); text-decoration: none; letter-spacing: -0.4px; }
+.logo span { color: var(--green); }
+
+.nav-cta {
+  background: var(--green);
+  color: #000;
+  text-decoration: none;
+  padding: 9px 18px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background .15s;
+}
+.nav-cta:hover { background: #1ed760; }
+
+/* ─── HERO ─── */
+.hero {
+  padding: 96px 20px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(29,185,84,.1);
+  border: 1px solid rgba(29,185,84,.25);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+  letter-spacing: .3px;
+}
+
+.badge-dot { width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
+
+h1 {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  max-width: 340px;
+}
+
+h1 em { font-style: normal; color: var(--green); }
+
+.hero-sub {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 300px;
+  line-height: 1.6;
+}
+
+.hero-sub strong { color: var(--white); font-weight: 600; }
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--green);
+  color: #000;
+  text-decoration: none;
+  padding: 15px 28px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 700;
+  width: 100%;
+  max-width: 320px;
+  transition: background .15s, transform .15s;
+}
+.cta:hover { background: #1ed760; transform: scale(1.01); }
+.cta svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+.hero-note { font-size: 12px; color: var(--dimmed); }
+
+/* ─── DIVIDER ─── */
+.hr { height: 1px; background: var(--border); margin: 0 20px; }
+
+/* ─── SECTIONS ─── */
+.sec { padding: 48px 20px; }
+
+.sec-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+.sec-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -.5px;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+/* ─── TESTIMONIALS ─── */
+.track-wrap { margin: 0 -20px; }
+
+.track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px 20px 16px;
+  cursor: grab;
+}
+.track::-webkit-scrollbar { display: none; }
+.track:active { cursor: grabbing; }
+
+.tcard {
+  flex: 0 0 calc(100vw - 56px);
+  max-width: 340px;
+  scroll-snap-align: start;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.stars { color: var(--gold); font-size: 13px; letter-spacing: 1px; }
+
+.ttext {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--white);
+  font-weight: 400;
+  flex: 1;
+}
+.ttext strong { color: var(--green); font-weight: 600; }
+
+.tauthor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.tavatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--bg3);
+  border: 1.5px solid var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--green);
+  flex-shrink: 0;
+}
+
+.tname { font-size: 13px; font-weight: 700; line-height: 1.3; }
+.trole { font-size: 11px; color: var(--muted); margin-top: 1px; }
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.dot {
+  height: 6px;
+  width: 6px;
+  border-radius: 3px;
+  background: var(--bg3);
+  transition: width .2s, background .2s;
+  cursor: pointer;
+}
+.dot.on { width: 18px; background: var(--green); }
+
+/* ─── PROOF ─── */
+.proof-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.proof-star { font-size: 20px; }
+.proof-num { font-size: 22px; font-weight: 900; color: var(--green); white-space: nowrap; }
+.proof-text { font-size: 14px; color: var(--muted); line-height: 1.45; }
+
+/* ─── STEPS ─── */
+.steps { display: flex; flex-direction: column; gap: 10px; }
+
+.step {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.snum {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--green);
+  opacity: .5;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 32px;
+}
+
+.stitle { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.sdesc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* ─── ORGS ─── */
+.orgs { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.org {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.orgs-more { font-size: 13px; color: var(--green); margin-top: 14px; font-weight: 500; }
+
+/* ─── CTA FINAL ─── */
+.cta-sec {
+  padding: 56px 20px 72px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.cta-quote {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -.5px;
+  max-width: 300px;
+}
+
+.cta-note { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.foot-logo { font-size: 15px; font-weight: 800; }
+.foot-logo span { color: var(--green); }
+footer p { font-size: 12px; color: var(--dimmed); }
+footer a { color: var(--muted); text-decoration: none; }
+
+/* ─── COOKIE ─── */
+.cookie {
+  position: fixed;
+  inset: auto 12px 12px;
+  z-index: 999;
+  background: var(--bg3);
+  border: 1px solid rgba(29,185,84,.2);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.5);
+}
+
+.cookie p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.cookie a { color: var(--green); text-decoration: none; }
+
+.cookie-btns { display: flex; gap: 8px; }
+
+.c-yes {
+  flex: 1;
+  background: var(--green);
+  color: #000;
+  border: none;
+  border-radius: 100px;
+  padding: 11px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Figtree', sans-serif;
+  transition: background .15s;
+}
+.c-yes:hover { background: #1ed760; }
+
+.c-no {
+  flex: 1;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 11px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Figtree', sans-serif;
+  transition: color .15s;
+}
+.c-no:hover { color: var(--white); }
+
+/* ─── DESKTOP ─── */
+@media (min-width: 720px) {
+  nav { padding: 14px 40px; }
+
+  .hero { padding: 110px 40px 72px; }
+  h1 { font-size: 52px; max-width: 640px; letter-spacing: -2px; }
+  .hero-sub { font-size: 19px; max-width: 460px; }
+  .cta { width: auto; font-size: 16px; }
+
+  .hr { margin: 0 40px; }
+  .sec { padding: 56px 40px; max-width: 720px; margin: 0 auto; }
+
+  .track-wrap { margin: 0 -40px; }
+  .track { padding: 4px 40px 16px; }
+  .tcard { flex: 0 0 360px; }
+
+  .steps { display: grid; grid-template-columns: repeat(3,1fr); }
+  .step { flex-direction: column; }
+
+  .cta-sec { padding: 72px 40px 96px; }
+  .cta-quote { font-size: 30px; max-width: 480px; }
+
+  footer { flex-direction: row; justify-content: space-between; padding: 24px 40px; text-align: left; }
+
+  .cookie {
+    inset: auto auto 24px 50%;
+    transform: translateX(-50%);
+    width: 460px;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+  .cookie p { flex: 1; }
+  .cookie-btns { flex-direction: column; flex-shrink: 0; gap: 6px; }
+  .c-yes, .c-no { padding: 9px 16px; flex: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Trib<span>artist</span></a>
+  <a href="https://form.typeform.com/to/gxHbW9Ea" class="nav-cta">Mon Tribmatch →</a>
+</nav>
+
+<section class="hero">
+  <div class="badge"><div class="badge-dot"></div>Hub de financement musical français</div>
+  <h1>Tu prépares ton EP&nbsp;?</h1>
+  <p class="hero-sub"><strong>Trouve la subvention qui finance ton enregistrement et ta promotion.</strong></p>
+  <a href="https://form.typeform.com/to/gxHbW9Ea" class="cta">
+    Découvre ton Tribmatch — c'est gratuit
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </a>
+  <p class="hero-note">Résultat par email en moins d'une minute · Sans inscription</p>
+</section>
+
+<div class="hr"></div>
+
+<section class="sec">
+  <p class="sec-label">Ce qu'ils en disent</p>
+  <h2 class="sec-title">Des artistes comme toi</h2>
+  <div class="track-wrap">
+    <div class="track" id="track">
+
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p class="ttext">"Sur Google les infos sont partout, éparpillées, compliquées à trouver. Avec Tribartist on m'a proposé directement <strong>ce qui matchait avec mon EP</strong>. C'est exactement pour ça que j'ai utilisé."</p>
+        <div class="tauthor">
+          <div class="tavatar">KW</div>
+          <div><p class="tname">Kwa</p><p class="trole">Artiste-interprète · EP 5 titres · Île-de-France</p></div>
+        </div>
+      </div>
+
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p class="ttext">"Je ne savais même pas que ces aides existaient. En une minute j'avais un résultat clair avec exactement <strong>ce qu'il me manquait pour déposer mon dossier</strong>. Aucun site ne fait ça."</p>
+        <div class="tauthor">
+          <div class="tavatar">ML</div>
+          <div><p class="tname">Malik L.</p><p class="trole">Auteur-compositeur · Album en cours · Paris</p></div>
+        </div>
+      </div>
+
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p class="ttext">"J'avais passé des heures sur les sites ADAMI et CNM sans rien comprendre. Tribartist m'a donné <strong>une réponse directe en fonction de mon profil</strong>. Simple, rapide, efficace."</p>
+        <div class="tauthor">
+          <div class="tavatar">SN</div>
+          <div><p class="tname">Sofia N.</p><p class="trole">Productrice indépendante · Seine-Saint-Denis</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="dots" id="dots">
+    <div class="dot on" data-i="0"></div>
+    <div class="dot" data-i="1"></div>
+    <div class="dot" data-i="2"></div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<section class="sec">
+  <div class="proof-card">
+    <span class="proof-star">⭐</span>
+    <span class="proof-num">+500</span>
+    <span class="proof-text">artistes ont déjà trouvé leur subvention avec Tribartist.</span>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<section class="sec">
+  <p class="sec-label">Comment ça marche</p>
+  <h2 class="sec-title">Simple comme bonjour</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="snum">01</div>
+      <div><p class="stitle">Tu remplis ton profil</p><p class="sdesc">Ton rôle, ton projet, ton stade — en moins d'une minute.</p></div>
+    </div>
+    <div class="step">
+      <div class="snum">02</div>
+      <div><p class="stitle">On analyse ta situation</p><p class="sdesc">Notre algorithme compare ton profil à toutes les aides disponibles.</p></div>
+    </div>
+    <div class="step">
+      <div class="snum">03</div>
+      <div><p class="stitle">Tu reçois ton Tribmatch</p><p class="sdesc">La subvention, ce qui matche, ce qu'il te manque — par email.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<section class="sec">
+  <p class="sec-label">Aides référencées</p>
+  <h2 class="sec-title">Les principales aides musicales françaises</h2>
+  <div class="orgs">
+    <div class="org">ADAMI</div>
+    <div class="org">SACEM</div>
+    <div class="org">CNM</div>
+    <div class="org">SPPF</div>
+    <div class="org">SPEDIDAM</div>
+  </div>
+  <p class="orgs-more">— et bien plus encore.</p>
+</section>
+
+<div class="hr"></div>
+
+<section class="cta-sec">
+  <p class="cta-quote">"Arrête de chercher sur Google. Reçois directement ce qui matche avec ton projet."</p>
+  <p class="cta-note">Gratuit · Sans inscription · Résultat en moins d'une minute</p>
+  <a href="https://form.typeform.com/to/gxHbW9Ea" class="cta">
+    Découvre ton Tribmatch — c'est gratuit
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </a>
+</section>
+
+<footer>
+  <p class="foot-logo">Trib<span>artist</span></p>
+  <p>© 2026 Tribartist — Hub de financement musical français</p>
+  <p><a href="/cdn-cgi/l/email-protection#147166637d7a5460667d767566607d67603a777b79"><span class="__cf_email__" data-cfemail="294c5b5e4047695d5b404b485b5d405a5d074a4644">[email&#160;protected]</span></a></p>
+</footer>
+
+<div class="cookie" id="cookie">
+  <p>Nous utilisons des cookies pour analyser le trafic. <a href="#">Politique de confidentialité</a></p>
+  <div class="cookie-btns">
+    <button class="c-yes" onclick="ck('yes')">Accepter</button>
+    <button class="c-no" onclick="ck('no')">Refuser</button>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function ck(v) {
+  document.getElementById('cookie').style.display = 'none';
+  localStorage.setItem('ck', v);
+}
+if (localStorage.getItem('ck')) document.getElementById('cookie').style.display = 'none';
+
+const track = document.getElementById('track');
+const dots = document.querySelectorAll('.dot');
+
+track.addEventListener('scroll', () => {
+  const w = track.querySelectorAll('.tcard')[0].offsetWidth + 12;
+  const i = Math.round(track.scrollLeft / w);
+  dots.forEach((d, j) => d.classList.toggle('on', i === j));
+}, { passive: true });
+
+dots.forEach(d => d.addEventListener('click', () => {
+  const w = track.querySelectorAll('.tcard')[0].offsetWidth + 12;
+  track.scrollTo({ left: parseInt(d.dataset.i) * w, behavior: 'smooth' });
+}));
+
+let dn = false, sx, sl;
+track.addEventListener('mousedown', e => { dn = true; sx = e.pageX - track.offsetLeft; sl = track.scrollLeft; });
+track.addEventListener('mouseleave
