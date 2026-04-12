@@ -14,6 +14,7 @@
   --bg2: #181818;
   --bg3: #282828;
   --green: #1DB954;
+  --green2: #1ed760;
   --white: #FFFFFF;
   --muted: #B3B3B3;
   --dimmed: #6A6A6A;
@@ -44,12 +45,35 @@ nav {
   background: rgba(18,18,18,0.96);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
+  gap: 12px;
 }
 
-.logo { font-size: 18px; font-weight: 800; color: var(--white); text-decoration: none; letter-spacing: -0.4px; }
+.logo {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: -0.4px;
+  flex-shrink: 0;
+}
 .logo span { color: var(--green); }
 
-.nav-cta {
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+
+.nav-login {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  transition: color .15s, border-color .15s;
+  white-space: nowrap;
+}
+.nav-login:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+
+.nav-signup {
   background: var(--green);
   color: #000;
   text-decoration: none;
@@ -58,12 +82,13 @@ nav {
   font-size: 13px;
   font-weight: 700;
   transition: background .15s;
+  white-space: nowrap;
 }
-.nav-cta:hover { background: #1ed760; }
+.nav-signup:hover { background: var(--green2); }
 
 /* ─── HERO ─── */
 .hero {
-  padding: 96px 20px 56px;
+  padding: 96px 20px 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,10 +128,79 @@ h1 em { font-style: normal; color: var(--green); }
   max-width: 300px;
   line-height: 1.6;
 }
-
 .hero-sub strong { color: var(--white); font-weight: 600; }
 
-.cta {
+/* ─── ACTIVATION BLOCK ─── */
+.activation {
+  width: 100%;
+  max-width: 400px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.activation-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+.activation-question {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  text-align: left;
+  line-height: 1.3;
+}
+
+.role-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.role-btn {
+  background: var(--bg3);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color .15s, background .15s;
+  font-family: 'Figtree', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.role-btn:hover {
+  border-color: var(--green);
+  background: rgba(29,185,84,0.08);
+}
+
+.role-btn.selected {
+  border-color: var(--green);
+  background: rgba(29,185,84,0.12);
+  color: var(--green);
+}
+
+.role-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.activation-cta {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,18 +208,31 @@ h1 em { font-style: normal; color: var(--green); }
   background: var(--green);
   color: #000;
   text-decoration: none;
-  padding: 15px 28px;
+  padding: 14px;
   border-radius: 100px;
   font-size: 15px;
   font-weight: 700;
   width: 100%;
-  max-width: 320px;
-  transition: background .15s, transform .15s;
+  transition: background .15s, opacity .15s;
+  border: none;
+  cursor: pointer;
+  font-family: 'Figtree', sans-serif;
+  opacity: 0.4;
+  pointer-events: none;
 }
-.cta:hover { background: #1ed760; transform: scale(1.01); }
-.cta svg { width: 15px; height: 15px; flex-shrink: 0; }
 
-.hero-note { font-size: 12px; color: var(--dimmed); }
+.activation-cta.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.activation-cta.active:hover { background: var(--green2); }
+.activation-cta svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+.activation-note {
+  font-size: 11px;
+  color: var(--dimmed);
+  text-align: center;
+}
 
 /* ─── DIVIDER ─── */
 .hr { height: 1px; background: var(--border); margin: 0 20px; }
@@ -308,6 +415,25 @@ h1 em { font-style: normal; color: var(--green); }
 
 .cta-note { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
 
+.cta-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--green);
+  color: #000;
+  text-decoration: none;
+  padding: 15px 28px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 700;
+  width: 100%;
+  max-width: 320px;
+  transition: background .15s;
+}
+.cta-main:hover { background: var(--green2); }
+.cta-main svg { width: 15px; height: 15px; flex-shrink: 0; }
+
 /* ─── FOOTER ─── */
 footer {
   padding: 24px 20px;
@@ -324,72 +450,95 @@ footer {
 footer p { font-size: 12px; color: var(--dimmed); }
 footer a { color: var(--muted); text-decoration: none; }
 
-
-
 /* ─── DESKTOP ─── */
 @media (min-width: 720px) {
   nav { padding: 14px 40px; }
-
-  .hero { padding: 110px 40px 72px; }
+  .hero { padding: 110px 40px 64px; }
   h1 { font-size: 52px; max-width: 640px; letter-spacing: -2px; }
   .hero-sub { font-size: 19px; max-width: 460px; }
-  .cta { width: auto; font-size: 16px; }
-
+  .activation { max-width: 480px; }
+  .role-options { flex-direction: row; }
+  .role-btn { flex: 1; flex-direction: column; text-align: center; gap: 6px; padding: 16px 12px; }
   .hr { margin: 0 40px; }
   .sec { padding: 56px 40px; max-width: 720px; margin: 0 auto; }
-
   .track-wrap { margin: 0 -40px; }
   .track { padding: 4px 40px 16px; }
   .tcard { flex: 0 0 360px; }
-
   .steps { display: grid; grid-template-columns: repeat(3,1fr); }
   .step { flex-direction: column; }
-
   .cta-sec { padding: 72px 40px 96px; }
   .cta-quote { font-size: 30px; max-width: 480px; }
-
+  .cta-main { width: auto; }
   footer { flex-direction: row; justify-content: space-between; padding: 24px 40px; text-align: left; }
-
-  .cookie {
-    inset: auto auto 24px 50%;
-    transform: translateX(-50%);
-    width: 460px;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-  }
-  .cookie p { flex: 1; }
-  .cookie-btns { flex-direction: column; flex-shrink: 0; gap: 6px; }
-  .c-yes, .c-no { padding: 9px 16px; flex: none; }
+  footer p { margin: 0; }
 }
 </style>
 </head>
 <body>
+<script>
+var selectedRole = null;
+
+function selectRole(btn, role) {
+  document.querySelectorAll('.role-btn').forEach(function(b) { b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  selectedRole = role;
+  var cta = document.getElementById('activationCta');
+  cta.classList.add('active');
+}
+
+function goToOnboarding() {
+  if (!selectedRole) return;
+  var encoded = encodeURIComponent(selectedRole);
+  window.location.href = 'https://tribartist-matchmaker.lovable.app/artiste?role=' + encoded;
+}
+</script>
+
 
 <nav>
-  <a href="#" class="logo">Trib<span>artist</span></a>
-  <a href="https://form.typeform.com/to/gxHbW9Ea" class="nav-cta">Mon Tribmatch →</a>
+  <a href="/" class="logo">Trib<span>artist</span></a>
+  <div class="nav-actions">
+    <a href="https://tribartist-matchmaker.lovable.app/artiste/login" class="nav-login">Se connecter</a>
+    <a href="https://tribartist-matchmaker.lovable.app/artiste" class="nav-signup">Créer mon compte</a>
+  </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="badge"><div class="badge-dot"></div>Hub de financement musical français</div>
   <h1>Tu prépares ton EP&nbsp;?</h1>
   <p class="hero-sub"><strong>Trouve la subvention qui finance ton enregistrement et ta promotion.</strong></p>
-  <a href="https://form.typeform.com/to/gxHbW9Ea" class="cta">
-    Découvre ton Tribmatch — c'est gratuit
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-  </a>
-  <p class="hero-note">Résultat par email en moins d'une minute · Sans inscription</p>
+
+  <!-- ACTIVATION BLOCK -->
+  <div class="activation">
+    <p class="activation-label">Commence ici</p>
+    <p class="activation-question">Ton rôle dans le projet ?</p>
+    <div class="role-options">
+      <button class="role-btn" onclick="selectRole(this, 'Auteur/Compositeur')">
+        Auteur / Compositeur
+      </button>
+      <button class="role-btn" onclick="selectRole(this, 'Artiste-interprète')">
+        Artiste-interprète
+      </button>
+      <button class="role-btn" onclick="selectRole(this, 'Producteur phonographique/Label')">
+        Producteur / Label
+      </button>
+    </div>
+    <button class="activation-cta" id="activationCta" onclick="goToOnboarding()">
+      Voir ma subvention — c'est gratuit
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+    <p class="activation-note">Résultat par email en moins d'une minute · Sans carte bancaire</p>
+  </div>
 </section>
 
 <div class="hr"></div>
 
+<!-- TESTIMONIALS -->
 <section class="sec">
   <p class="sec-label">Ce qu'ils en disent</p>
   <h2 class="sec-title">Des artistes comme toi</h2>
   <div class="track-wrap">
     <div class="track" id="track">
-
       <div class="tcard">
         <div class="stars">★★★★★</div>
         <p class="ttext">"Sur Google les infos sont partout, éparpillées, compliquées à trouver. Avec Tribartist on m'a proposé directement <strong>ce qui matchait avec mon EP</strong>. C'est exactement pour ça que j'ai utilisé."</p>
@@ -398,7 +547,6 @@ footer a { color: var(--muted); text-decoration: none; }
           <div><p class="tname">Kwa</p><p class="trole">Artiste-interprète · EP 5 titres · Île-de-France</p></div>
         </div>
       </div>
-
       <div class="tcard">
         <div class="stars">★★★★★</div>
         <p class="ttext">"Je ne savais même pas que ces aides existaient. En une minute j'avais un résultat clair avec exactement <strong>ce qu'il me manquait pour déposer mon dossier</strong>. Aucun site ne fait ça."</p>
@@ -407,7 +555,6 @@ footer a { color: var(--muted); text-decoration: none; }
           <div><p class="tname">Malik L.</p><p class="trole">Auteur-compositeur · Album en cours · Paris</p></div>
         </div>
       </div>
-
       <div class="tcard">
         <div class="stars">★★★★★</div>
         <p class="ttext">"J'avais passé des heures sur les sites ADAMI et CNM sans rien comprendre. Tribartist m'a donné <strong>une réponse directe en fonction de mon profil</strong>. Simple, rapide, efficace."</p>
@@ -416,7 +563,6 @@ footer a { color: var(--muted); text-decoration: none; }
           <div><p class="tname">Sofia N.</p><p class="trole">Productrice indépendante · Seine-Saint-Denis</p></div>
         </div>
       </div>
-
     </div>
   </div>
   <div class="dots" id="dots">
@@ -428,7 +574,8 @@ footer a { color: var(--muted); text-decoration: none; }
 
 <div class="hr"></div>
 
-<section class="sec">
+<!-- PROOF -->
+<section class="sec" style="padding-top:32px;padding-bottom:32px;">
   <div class="proof-card">
     <span class="proof-star">⭐</span>
     <span class="proof-num">+500</span>
@@ -438,13 +585,14 @@ footer a { color: var(--muted); text-decoration: none; }
 
 <div class="hr"></div>
 
+<!-- HOW IT WORKS -->
 <section class="sec">
   <p class="sec-label">Comment ça marche</p>
   <h2 class="sec-title">Simple comme bonjour</h2>
   <div class="steps">
     <div class="step">
       <div class="snum">01</div>
-      <div><p class="stitle">Tu remplis ton profil</p><p class="sdesc">Ton rôle, ton projet, ton stade — en moins d'une minute.</p></div>
+      <div><p class="stitle">Tu remplis ton profil</p><p class="sdesc">Ton rôle, ton projet, ton stade — en quelques clics.</p></div>
     </div>
     <div class="step">
       <div class="snum">02</div>
@@ -452,13 +600,14 @@ footer a { color: var(--muted); text-decoration: none; }
     </div>
     <div class="step">
       <div class="snum">03</div>
-      <div><p class="stitle">Tu reçois ton Tribmatch</p><p class="sdesc">La subvention, ce qui matche, ce qu'il te manque — par email.</p></div>
+      <div><p class="stitle">Tu reçois ton Tribmatch</p><p class="sdesc">La subvention, ce qui matche, ce qu'il te manque — par email et dans ton espace.</p></div>
     </div>
   </div>
 </section>
 
 <div class="hr"></div>
 
+<!-- ORGANISMES -->
 <section class="sec">
   <p class="sec-label">Aides référencées</p>
   <h2 class="sec-title">Les principales aides musicales françaises</h2>
@@ -474,10 +623,11 @@ footer a { color: var(--muted); text-decoration: none; }
 
 <div class="hr"></div>
 
+<!-- CTA FINAL -->
 <section class="cta-sec">
   <p class="cta-quote">"Arrête de chercher sur Google. Reçois directement ce qui matche avec ton projet."</p>
-  <p class="cta-note">Gratuit · Sans inscription · Résultat en moins d'une minute</p>
-  <a href="https://form.typeform.com/to/gxHbW9Ea" class="cta">
+  <p class="cta-note">Gratuit · Sans carte bancaire · Résultat en moins d'une minute</p>
+  <a href="https://tribartist-matchmaker.lovable.app/artiste" class="cta-main">
     Découvre ton Tribmatch — c'est gratuit
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
   </a>
@@ -486,11 +636,10 @@ footer a { color: var(--muted); text-decoration: none; }
 <footer>
   <p class="foot-logo">Trib<span>artist</span></p>
   <p>© 2026 Tribartist — Hub de financement musical français</p>
-  <p><a href="/cdn-cgi/l/email-protection#147166637d7a5460667d767566607d67603a777b79"><span class="__cf_email__" data-cfemail="294c5b5e4047695d5b404b485b5d405a5d074a4644">[email&#160;protected]</span></a></p>
+  <p><a href="/cdn-cgi/l/email-protection#b8ddcacfd1d6f8cccad1dad9caccd1cbcc96dbd7d5"><span class="__cf_email__" data-cfemail="f39681849a9db387819a919281879a8087dd909c9e">[email&#160;protected]</span></a></p>
 </footer>
 
-
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const track = document.getElementById('track');
 const dots = document.querySelectorAll('.dot');
 
