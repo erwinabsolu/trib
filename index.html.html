@@ -489,7 +489,7 @@ function selectRole(btn, role) {
 function goToOnboarding() {
   if (!selectedRole) return;
   var encoded = encodeURIComponent(selectedRole);
-  window.location.href = 'https://tribartist-matchmaker.lovable.app/artiste?role=' + encoded;
+  window.location.href = 'https://tribartist-matchmaker.lovable.app/artiste/onboarding?role=' + encoded;
 }
 </script>
 
@@ -498,7 +498,7 @@ function goToOnboarding() {
   <a href="/" class="logo">Trib<span>artist</span></a>
   <div class="nav-actions">
     <a href="https://tribartist-matchmaker.lovable.app/artiste/login" class="nav-login">Se connecter</a>
-    <a href="https://tribartist-matchmaker.lovable.app/artiste" class="nav-signup">Créer mon compte</a>
+    <a href="https://tribartist-matchmaker.lovable.app/artiste/onboarding" class="nav-signup">Créer mon compte</a>
   </div>
 </nav>
 
@@ -627,7 +627,7 @@ function goToOnboarding() {
 <section class="cta-sec">
   <p class="cta-quote">"Arrête de chercher sur Google. Reçois directement ce qui matche avec ton projet."</p>
   <p class="cta-note">Gratuit · Sans carte bancaire · Résultat en moins d'une minute</p>
-  <a href="https://tribartist-matchmaker.lovable.app/artiste" class="cta-main">
+  <a href="https://tribartist-matchmaker.lovable.app/artiste/onboarding" class="cta-main">
     Découvre ton Tribmatch — c'est gratuit
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
   </a>
