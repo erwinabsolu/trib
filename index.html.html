@@ -494,13 +494,48 @@ function selectRole(btn, role) {
   selectedRole = role;
   var cta = document.getElementById('activationCta');
   cta.classList.add('active');
+  posthog.capture('landing_role_selected', { role: role });
 }
 
 function goToOnboarding() {
   if (!selectedRole) return;
+  posthog.capture('landing_cta_clicked', { role: selectedRole, cta: 'hero_voir_ma_subvention' });
   var encoded = encodeURIComponent(selectedRole);
   window.location.href = 'https://tribartist-matchmaker.lovable.app/artiste/onboarding?role=' + encoded;
 }
+
+// Track scroll depth
+var scrollTracked = {};
+window.addEventListener('scroll', function() {
+  var scrollPct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+  var milestones = [25, 50, 75, 100];
+  milestones.forEach(function(m) {
+    if (scrollPct >= m && !scrollTracked[m]) {
+      scrollTracked[m] = true;
+      posthog.capture('landing_scroll_depth', { depth: m });
+    }
+  });
+}, { passive: true });
+
+// Track bottom CTA click
+document.addEventListener('DOMContentLoaded', function() {
+  var ctaMain = document.querySelector('.cta-main');
+  if (ctaMain) {
+    ctaMain.addEventListener('click', function() {
+      posthog.capture('landing_cta_clicked', { cta: 'bottom_decouvre_tribmatch' });
+    });
+  }
+
+  // Track nav clicks
+  var navLogin = document.querySelector('.nav-login');
+  var navSignup = document.querySelector('.nav-signup');
+  if (navLogin) navLogin.addEventListener('click', function() {
+    posthog.capture('landing_nav_clicked', { button: 'se_connecter' });
+  });
+  if (navSignup) navSignup.addEventListener('click', function() {
+    posthog.capture('landing_nav_clicked', { button: 'creer_mon_compte' });
+  });
+});
 </script>
 
 
