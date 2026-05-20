@@ -1,265 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tribartist — You make the music. A pro gets you funded.</title>
+<title>Tribartist — Trouve ta subvention musicale en 1 minute</title>
+<meta name="description" content="Tribartist fait matcher ton projet musical avec la subvention dont tu as besoin. Gratuit. Sans carte bancaire. Résultat en moins d'une minute.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script>
 !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-posthog.init('phc_n9QhcEhnkqhoFSYbDfnszz7ByTw4bioKDtKJxAUtDQXL', {
-    api_host: 'https://eu.i.posthog.com',
-    person_profiles: 'identified_only',
-    capture_pageview: true,
-    capture_pageleave: true
-});
+posthog.init('phc_n9QhcEhnkqhoFSYbDfnszz7ByTw4bioKDtKJxAUtDQXL',{api_host:'https://eu.i.posthog.com',person_profiles:'identified_only',capture_pageview:true,capture_pageleave:true});
 </script>
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="fb5373bf-ad55-41e3-bfda-64502ca063b9";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0a;--surface:#141414;--border:#1f1f1f;--green:#1DB954;--green2:#1ed760;--white:#fff;--muted:#999;--dimmed:#555;--gold:#f59e0b}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
 
-:root {
-  --bg: #0a0a0a;
-  --surface: #141414;
-  --border: #1f1f1f;
-  --green: #1DB954;
-  --green2: #1ed760;
-  --white: #FFFFFF;
-  --muted: #999;
-  --dimmed: #555;
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:rgba(10,10,10,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-size:20px;font-weight:800;letter-spacing:-.5px}
+.logo span{color:var(--green)}
+.nav-r{display:flex;gap:10px;align-items:center}
+.nav-login{font-size:13px;font-weight:500;color:var(--muted);padding:8px 16px;border-radius:8px;transition:color .2s}
+.nav-login:hover{color:var(--white)}
+.nav-cta{font-size:13px;font-weight:600;color:#000;background:var(--green);padding:8px 18px;border-radius:8px;transition:transform .2s,box-shadow .2s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(29,185,84,.3)}
 
-html { scroll-behavior: smooth; }
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(29,185,84,.08) 0%,transparent 70%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:32px;animation:fu .6s ease both}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+h1{font-size:clamp(32px,7vw,64px);font-weight:900;line-height:1.08;letter-spacing:-2px;max-width:700px;animation:fu .6s ease .1s both}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--green),var(--green2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:clamp(15px,2.5vw,19px);color:var(--muted);max-width:480px;line-height:1.6;margin-top:20px;font-weight:400;animation:fu .6s ease .2s both}
+.hero-ctas{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;justify-content:center;animation:fu .6s ease .3s both}
+.btn-main{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#000;font-size:16px;font-weight:700;padding:16px 32px;border-radius:12px;transition:transform .2s,box-shadow .2s;cursor:pointer}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(29,185,84,.3)}
+.hero-note{margin-top:16px;font-size:12px;color:var(--dimmed);animation:fu .6s ease .4s both}
 
-body {
-  background: var(--bg);
-  color: var(--white);
-  font-family: 'Outfit', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
+.hr{height:1px;background:var(--border);margin:0 24px}
+.sec{max-width:720px;margin:0 auto;padding:64px 24px}
+.sec-label{font-size:11px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.sec-title{font-size:clamp(24px,4vw,36px);font-weight:800;line-height:1.2;letter-spacing:-1px;margin-bottom:32px}
 
-a { color: inherit; text-decoration: none; }
+.cards{display:flex;flex-direction:column;gap:20px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px}
+.card-icon{font-size:28px;margin-bottom:12px}
+.card-title{font-size:18px;font-weight:700;margin-bottom:8px}
+.card-text{font-size:14px;color:var(--muted);line-height:1.6}
 
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 16px 24px;
-  background: rgba(10,10,10,0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-.logo { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
-.logo span { color: var(--green); }
-.nav-actions { display: flex; gap: 10px; align-items: center; }
-.nav-login {
-  font-size: 13px; font-weight: 500; color: var(--muted);
-  padding: 8px 16px; border-radius: 8px;
-  transition: color 0.2s;
-}
-.nav-login:hover { color: var(--white); }
-.nav-signup {
-  font-size: 13px; font-weight: 600; color: #000;
-  background: var(--green); padding: 8px 18px; border-radius: 8px;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.nav-signup:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(29,185,84,0.3); }
+.steps{display:flex;flex-direction:column;gap:24px}
+.step{display:flex;gap:20px;align-items:flex-start}
+.step-num{min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:16px;font-weight:800;color:var(--green)}
+.step-title{font-size:17px;font-weight:700;margin-bottom:4px}
+.step-desc{font-size:14px;color:var(--muted);line-height:1.5}
 
-.hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  text-align: center;
-  padding: 120px 24px 80px;
-  position: relative;
-}
-.hero::before {
-  content: '';
-  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(29,185,84,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
+.proof{text-align:center;padding:48px 24px}
+.proof-num{font-size:48px;font-weight:900;background:linear-gradient(135deg,var(--green),var(--green2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.proof-label{font-size:15px;color:var(--muted);margin-top:4px}
 
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--surface); border: 1px solid var(--border);
-  padding: 6px 16px; border-radius: 100px;
-  font-size: 12px; font-weight: 500; color: var(--muted);
-  letter-spacing: 0.5px; text-transform: uppercase;
-  margin-bottom: 32px;
-  animation: fadeUp 0.6s ease both;
-}
-.hero-badge-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--green);
-  animation: pulse 2s infinite;
-}
+.tcard{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px}
+.tstars{color:var(--gold);font-size:14px;margin-bottom:12px}
+.ttext{color:var(--white);font-size:15px;line-height:1.7}
+.tauthor{display:flex;align-items:center;gap:12px;margin-top:16px}
+.tavatar{width:36px;height:36px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--green)}
+.tname{font-size:13px;font-weight:600;color:var(--white);margin:0}
+.trole{font-size:11px;color:var(--dimmed);margin:2px 0 0}
 
-h1 {
-  font-size: clamp(36px, 7vw, 72px);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -2px;
-  max-width: 800px;
-  animation: fadeUp 0.6s ease 0.1s both;
-}
-h1 em {
-  font-style: normal;
-  background: linear-gradient(135deg, var(--green), var(--green2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0}
+.faq-q{font-size:16px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-q::after{content:'+';font-size:20px;font-weight:300;color:var(--green);transition:transform .3s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
+.faq-item.open .faq-a{max-height:300px;padding-top:12px}
+.faq-a p{font-size:14px;color:var(--muted);line-height:1.7}
 
-.hero-sub {
-  font-size: clamp(16px, 2.5vw, 20px);
-  color: var(--muted);
-  max-width: 520px;
-  line-height: 1.6;
-  margin-top: 20px;
-  font-weight: 400;
-  animation: fadeUp 0.6s ease 0.2s both;
-}
+.founder{text-align:center;max-width:480px;margin:0 auto;padding:64px 24px}
+.founder-name{font-size:18px;font-weight:700;margin-bottom:8px}
+.founder-text{font-size:14px;color:var(--muted);line-height:1.6}
+.founder-email{color:var(--green);font-weight:600;text-decoration:none}
 
-.hero-ctas {
-  display: flex; gap: 14px; margin-top: 40px;
-  flex-wrap: wrap; justify-content: center;
-  animation: fadeUp 0.6s ease 0.3s both;
-}
-.btn-artist {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: var(--green); color: #000;
-  font-size: 16px; font-weight: 700;
-  padding: 16px 32px; border-radius: 12px;
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-}
-.btn-artist:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(29,185,84,0.3); }
-.btn-pro {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: transparent; color: var(--white);
-  font-size: 16px; font-weight: 600;
-  padding: 16px 32px; border-radius: 12px;
-  border: 1px solid var(--border);
-  transition: transform 0.2s, border-color 0.2s, background 0.2s;
-  cursor: pointer;
-}
-.btn-pro:hover { transform: translateY(-2px); border-color: var(--dimmed); background: var(--surface); }
+.final{text-align:center;padding:80px 24px}
+.final h2{font-size:clamp(24px,4vw,36px);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+.final p{font-size:15px;color:var(--muted);margin-bottom:32px}
 
-.hero-note {
-  margin-top: 16px; font-size: 12px; color: var(--dimmed);
-  animation: fadeUp 0.6s ease 0.4s both;
-}
+footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
+.foot-logo{font-size:18px;font-weight:800;margin-bottom:6px}
+.foot-logo span{color:var(--green)}
+footer p{font-size:12px;color:var(--dimmed);margin-top:4px}
+footer a{color:var(--muted)}
 
-.hr { height: 1px; background: var(--border); margin: 0 24px; }
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-.sec {
-  max-width: 720px; margin: 0 auto;
-  padding: 64px 24px;
-}
-.sec-label {
-  font-size: 11px; font-weight: 600; color: var(--green);
-  text-transform: uppercase; letter-spacing: 2px;
-  margin-bottom: 12px;
-}
-.sec-title {
-  font-size: clamp(24px, 4vw, 36px);
-  font-weight: 800; line-height: 1.2;
-  letter-spacing: -1px;
-  margin-bottom: 32px;
-}
-
-.problem-grid { display: flex; flex-direction: column; gap: 20px; }
-.problem-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px;
-}
-.problem-icon { font-size: 28px; margin-bottom: 12px; }
-.problem-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-.problem-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-.solution-steps { display: flex; flex-direction: column; gap: 24px; }
-.sol-step { display: flex; gap: 20px; align-items: flex-start; }
-.sol-num {
-  min-width: 44px; height: 44px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px;
-  font-size: 16px; font-weight: 800; color: var(--green);
-}
-.sol-title { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
-.sol-desc { font-size: 14px; color: var(--muted); line-height: 1.5; }
-
-.proof { text-align: center; padding: 48px 24px; }
-.proof-number {
-  font-size: 48px; font-weight: 900;
-  background: linear-gradient(135deg, var(--green), var(--green2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.proof-label { font-size: 15px; color: var(--muted); margin-top: 4px; }
-
-.for-pros {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 40px 28px;
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto;
-}
-.for-pros h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
-.for-pros > p { font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 24px; }
-.for-pros-features { display: flex; flex-direction: column; gap: 12px; text-align: left; margin-bottom: 28px; }
-.fp-feat { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); }
-.fp-check { color: var(--green); font-size: 16px; font-weight: 700; }
-.btn-pro-cta {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: transparent; color: var(--white);
-  font-size: 15px; font-weight: 600;
-  padding: 14px 28px; border-radius: 12px;
-  border: 1px solid var(--border);
-  transition: all 0.2s;
-}
-.btn-pro-cta:hover { border-color: var(--green); color: var(--green); }
-
-.final-cta { text-align: center; padding: 80px 24px; }
-.final-cta h2 {
-  font-size: clamp(24px, 4vw, 36px);
-  font-weight: 800; letter-spacing: -1px;
-  margin-bottom: 12px;
-}
-.final-cta p { font-size: 15px; color: var(--muted); margin-bottom: 32px; }
-.final-cta .hero-ctas { animation: none; }
-
-footer {
-  text-align: center; padding: 32px 24px;
-  border-top: 1px solid var(--border);
-}
-.foot-logo { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
-.foot-logo span { color: var(--green); }
-footer p { font-size: 12px; color: var(--dimmed); margin-top: 4px; }
-footer a { color: var(--muted); }
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-@media (max-width: 600px) {
-  nav { padding: 12px 16px; }
-  .hero { padding: 100px 20px 60px; }
-  .hero-ctas { flex-direction: column; width: 100%; padding: 0 16px; }
-  .btn-artist, .btn-pro { width: 100%; justify-content: center; }
-  .sec { padding: 48px 20px; }
-  .for-pros { margin: 0 16px; padding: 32px 20px; }
-  .proof-number { font-size: 36px; }
+@media(max-width:600px){
+nav{padding:12px 16px}
+.hero{padding:100px 20px 60px}
+.hero-ctas{flex-direction:column;width:100%;padding:0 16px}
+.btn-main{width:100%;justify-content:center}
+.sec{padding:48px 20px}
+.proof-num{font-size:36px}
 }
 </style>
 </head>
@@ -267,78 +109,77 @@ footer a { color: var(--muted); }
 
 <nav>
   <a href="/" class="logo">Trib<span>artist</span></a>
-  <div class="nav-actions">
-    <a href="https://tribartist-matchmaker.lovable.app/artiste/login" class="nav-login">Log in</a>
-    <a href="https://tribartist-matchmaker.lovable.app/artiste/onboarding" class="nav-signup" onclick="posthog.capture('landing_cta_clicked', {cta: 'nav_signup'})">Sign up free</a>
+  <div class="nav-r">
+    <a href="https://tribartist-matchmaker.lovable.app/artiste/login" class="nav-login">Connexion</a>
+    <a href="https://tribartist-matchmaker.lovable.app/artiste/onboarding" class="nav-cta" onclick="posthog.capture('cta_clicked',{cta:'nav'})">Inscription gratuite</a>
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-badge"><div class="hero-badge-dot"></div>The global music funding network</div>
-  <h1>You make the music.<br><em>A pro gets you funded.</em></h1>
-  <p class="hero-sub">Independent artists lose thousands in unclaimed funding every year. Tribartist connects you with a music funding specialist who gets you funded. Worldwide.</p>
-
+  <div class="badge"><div class="badge-dot"></div>Le hub du financement musical français</div>
+  <h1>Tribartist fait matcher ton projet<br>avec <em>ta subvention.</em></h1>
+  <p class="hero-sub">Remplis ton profil en 1 minute. Notre algorithme te montre la subvention qui correspond à ton projet, ce qui matche et ce qu'il te manque.</p>
   <div class="hero-ctas">
-    <a href="https://tribartist-matchmaker.lovable.app/artiste/onboarding" class="btn-artist" onclick="posthog.capture('landing_cta_clicked', {cta: 'hero_artist'})">
-      I'm an artist — get funded
+    <a href="https://tribartist-matchmaker.lovable.app/artiste/onboarding" class="btn-main" onclick="posthog.capture('cta_clicked',{cta:'hero'})">
+      Découvre ton Tribmatch — c'est gratuit
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
-    <a href="https://tribartist-matchmaker.lovable.app/pro" class="btn-pro" onclick="posthog.capture('landing_cta_clicked', {cta: 'hero_pro'})">
-      I'm a pro — get clients
-    </a>
   </div>
-  <p class="hero-note">Free forever for artists · No credit card · 30 seconds to sign up</p>
+  <p class="hero-note">Gratuit · Sans carte bancaire · Résultat en moins d'une minute</p>
 </section>
 
 <div class="hr"></div>
 
+<!-- PROBLÈME -->
 <section class="sec">
-  <p class="sec-label">The problem</p>
-  <h2 class="sec-title">You're leaving money on the table.</h2>
-  <div class="problem-grid">
-    <div class="problem-card">
-      <div class="problem-icon">😤</div>
-      <p class="problem-title">Funding exists. You just can't access it.</p>
-      <p class="problem-text">Grants, tax credits, public funding, private investment — thousands of dollars are available for your music. But the system is complex, scattered, and built to discourage you.</p>
+  <p class="sec-label">Le problème</p>
+  <h2 class="sec-title">Tu finances tout de ta poche. Et ça dure.</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">😤</div>
+      <p class="card-title">Les aides existent. Tu ne sais juste pas lesquelles.</p>
+      <p class="card-text">CNM, ADAMI, SACEM, SPEDIDAM, SPPF — des milliers d'euros sont disponibles pour ton projet. Mais l'info est éparpillée sur des dizaines de sites, dans un jargon que personne ne comprend.</p>
     </div>
-    <div class="problem-card">
-      <div class="problem-icon">📝</div>
-      <p class="problem-title">The admin kills your momentum.</p>
-      <p class="problem-text">Legal structures, bank accounts, affiliations, budgets, applications. One artist told us he was paying $300 per file. Most just give up and pay out of pocket.</p>
+    <div class="card">
+      <div class="card-icon">📝</div>
+      <p class="card-title">L'administratif tue ta motivation.</p>
+      <p class="card-text">Structure juridique, affiliations, budgets, pièces justificatives. Un artiste nous a dit qu'il payait 300€ par dossier. La plupart abandonnent et paient tout de leur poche.</p>
     </div>
-    <div class="problem-card">
-      <div class="problem-icon">💸</div>
-      <p class="problem-title">So you self-finance everything. Again.</p>
-      <p class="problem-text">Studio, mixing, mastering, promo — all from your savings. Meanwhile the money that could cover it all stays on the table because nobody helped you get it.</p>
+    <div class="card">
+      <div class="card-icon">💸</div>
+      <p class="card-title">Résultat : tu autofinances tout. Encore.</p>
+      <p class="card-text">Studio, mixage, mastering, promo — tout sort de tes économies. Pendant ce temps, des subventions qui pourraient couvrir tout ça restent non réclamées parce que personne ne t'a dit que tu étais éligible.</p>
     </div>
   </div>
 </section>
 
 <div class="hr"></div>
 
+<!-- SOLUTION -->
 <section class="sec">
-  <p class="sec-label">The solution</p>
-  <h2 class="sec-title">Find the right pro. Get funded.</h2>
-  <div class="solution-steps">
-    <div class="sol-step">
-      <div class="sol-num">1</div>
+  <p class="sec-label">La solution</p>
+  <h2 class="sec-title">Simple comme bonjour.</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
       <div>
-        <p class="sol-title">Sign up in 30 seconds</p>
-        <p class="sol-desc">Your country, your city, what you need. That's it.</p>
+        <p class="step-title">Tu remplis ton profil en 1 minute</p>
+        <p class="step-desc">Ton rôle, ton projet, ton stade, tes affiliations — en quelques clics.</p>
       </div>
     </div>
-    <div class="sol-step">
-      <div class="sol-num">2</div>
+    <div class="step">
+      <div class="step-num">2</div>
       <div>
-        <p class="sol-title">Find a music funding specialist near you</p>
-        <p class="sol-desc">Browse verified professionals who handle music funding applications, file your paperwork, and get you the money you deserve.</p>
+        <p class="step-title">On analyse ta situation</p>
+        <p class="step-desc">Notre algorithme compare ton profil à toutes les subventions musicales françaises disponibles.</p>
       </div>
     </div>
-    <div class="sol-step">
-      <div class="sol-num">3</div>
+    <div class="step">
+      <div class="step-num">3</div>
       <div>
-        <p class="sol-title">They handle the funding. You make music.</p>
-        <p class="sol-desc">The pro files your applications, handles the paperwork, gets you funded. You focus on creating.</p>
+        <p class="step-title">Tu reçois ton Tribmatch</p>
+        <p class="step-desc">La subvention qui correspond à ton projet, ce qui matche, ce qu'il te manque et comment débloquer chaque critère — dans ton espace et par email.</p>
       </div>
     </div>
   </div>
@@ -346,39 +187,41 @@ footer a { color: var(--muted); }
 
 <div class="hr"></div>
 
+<!-- PROOF -->
 <section class="proof">
-  <div class="proof-number">1,500+</div>
-  <p class="proof-label">artists already on Tribartist</p>
+  <div class="proof-num">1 500+</div>
+  <p class="proof-label">artistes ont déjà découvert leur Tribmatch</p>
 </section>
 
 <div class="hr"></div>
 
+<!-- TÉMOIGNAGES -->
 <section class="sec">
-  <p class="sec-label">What artists say</p>
-  <h2 class="sec-title">Real artists. Real results.</h2>
-  <div class="problem-grid">
-    <div class="problem-card">
-      <div style="color:#f59e0b;font-size:14px;margin-bottom:12px;">★★★★★</div>
-      <p class="problem-text" style="color:var(--white);font-size:15px;line-height:1.7;">"On Google the info is scattered everywhere. With Tribartist I was matched with exactly what fit my EP. That's exactly why I signed up."</p>
-      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;">
-        <div style="width:36px;height:36px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--green);">KW</div>
-        <div><p style="font-size:13px;font-weight:600;color:var(--white);margin:0;">Kwa</p><p style="font-size:11px;color:var(--dimmed);margin:2px 0 0;">Singer · 5-track EP · Paris</p></div>
+  <p class="sec-label">Ce que disent les artistes</p>
+  <h2 class="sec-title">Des vrais artistes. Des vrais résultats.</h2>
+  <div class="cards">
+    <div class="tcard">
+      <div class="tstars">★★★★★</div>
+      <p class="ttext">"Sur Google l'info est éparpillée partout. Avec Tribartist j'ai été matché avec exactement ce qui correspondait à mon projet. C'est pour ça que je me suis inscrit."</p>
+      <div class="tauthor">
+        <div class="tavatar">KW</div>
+        <div><p class="tname">Kwa</p><p class="trole">Artiste-interprète · EP 5 titres · Paris</p></div>
       </div>
     </div>
-    <div class="problem-card">
-      <div style="color:#f59e0b;font-size:14px;margin-bottom:12px;">★★★★★</div>
-      <p class="problem-text" style="color:var(--white);font-size:15px;line-height:1.7;">"I didn't even know these grants existed. In one minute I had a clear result showing exactly what I was missing to apply. No other site does this."</p>
-      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;">
-        <div style="width:36px;height:36px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--green);">ML</div>
-        <div><p style="font-size:13px;font-weight:600;color:var(--white);margin:0;">Malik L.</p><p style="font-size:11px;color:var(--dimmed);margin:2px 0 0;">Songwriter · Album in progress · Paris</p></div>
+    <div class="tcard">
+      <div class="tstars">★★★★★</div>
+      <p class="ttext">"Je ne savais même pas que ces subventions existaient. En une minute j'avais un résultat clair qui me montrait exactement ce qu'il me manquait pour postuler. Aucun autre site ne fait ça."</p>
+      <div class="tauthor">
+        <div class="tavatar">ML</div>
+        <div><p class="tname">Malik L.</p><p class="trole">Auteur-compositeur · Album en cours · Paris</p></div>
       </div>
     </div>
-    <div class="problem-card">
-      <div style="color:#f59e0b;font-size:14px;margin-bottom:12px;">★★★★★</div>
-      <p class="problem-text" style="color:var(--white);font-size:15px;line-height:1.7;">"I was paying someone $300 per application and still getting rejected. Now I know exactly what to fix before I even apply. Game changer."</p>
-      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;">
-        <div style="width:36px;height:36px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--green);">SA</div>
-        <div><p style="font-size:13px;font-weight:600;color:var(--white);margin:0;">Sofia A.</p><p style="font-size:11px;color:var(--dimmed);margin:2px 0 0;">Producer · EP recording · Lyon</p></div>
+    <div class="tcard">
+      <div class="tstars">★★★★★</div>
+      <p class="ttext">"Je payais quelqu'un 300€ par dossier et je me faisais quand même refuser. Maintenant je sais exactement ce qu'il faut corriger avant même de postuler."</p>
+      <div class="tauthor">
+        <div class="tavatar">SA</div>
+        <div><p class="tname">Sofia A.</p><p class="trole">Productrice · EP en cours · Lyon</p></div>
       </div>
     </div>
   </div>
@@ -386,55 +229,82 @@ footer a { color: var(--muted); }
 
 <div class="hr"></div>
 
-<section style="padding: 64px 24px;">
-  <div class="for-pros">
-    <p class="sec-label">For professionals</p>
-    <h2>Artists need funding. They're looking for you.</h2>
-    <p>Music funding specialists — independent artists are actively looking for someone to handle their funding applications. Get listed and let them come to you.</p>
-    <div class="for-pros-features">
-      <div class="fp-feat"><span class="fp-check">✓</span> Artists find you and contact you directly</div>
-      <div class="fp-feat"><span class="fp-check">✓</span> 20 artist contacts per week</div>
-      <div class="fp-feat"><span class="fp-check">✓</span> Sign up in 2 minutes — completely free</div>
-    </div>
-    <a href="https://tribartist-matchmaker.lovable.app/pro" class="btn-pro-cta" onclick="posthog.capture('landing_cta_clicked', {cta: 'pro_section'})">
-      Create my free pro account →
-    </a>
+<!-- FAQ -->
+<section class="sec">
+  <p class="sec-label">Questions fréquentes</p>
+  <h2 class="sec-title">On répond à tout.</h2>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">C'est quoi Tribartist exactement ?</div>
+    <div class="faq-a"><p>Tribartist est un outil gratuit qui analyse ton profil d'artiste musical indépendant et te montre quelle subvention correspond à ton projet (EP, album, clip, promo). Tu remplis ton profil en 1 minute, et tu reçois ton "Tribmatch" : la subvention qui matche, les critères que tu valides et ceux qu'il te manque. On ne monte pas ton dossier — on te montre exactement où tu en es et ce qu'il te faut pour être éligible.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">C'est vraiment gratuit ?</div>
+    <div class="faq-a"><p>Oui. 100% gratuit. Pas de période d'essai, pas de carte bancaire, pas de piège. Tu t'inscris, tu reçois ton Tribmatch, tu l'utilises. On ne te demandera jamais d'argent.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Pourquoi c'est gratuit ?</div>
+    <div class="faq-a"><p>Parce qu'on croit que chaque artiste indépendant devrait savoir s'il est éligible à une aide — sans payer pour le découvrir. Tribartist est financé par son fondateur. Pas de pub, pas de sponsors, pas de données revendues.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Vous montez les dossiers de subvention ?</div>
+    <div class="faq-a"><p>Non. Tribartist te montre quelle subvention correspond à ton profil et ce qu'il te manque pour être éligible. On ne monte pas les dossiers. Par contre, on référence des pros du financement musical que tu peux contacter directement si tu veux que quelqu'un s'en occupe pour toi.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je ne comprends pas le concept.</div>
+    <div class="faq-a"><p>C'est simple : tu es artiste musical, tu veux savoir si tu peux obtenir une subvention pour ton projet. Tu remplis ton profil sur Tribartist (ton rôle, ton projet, tes affiliations). Notre algorithme compare ton profil aux subventions musicales françaises (CNM, ADAMI, SACEM, SPEDIDAM, SPPF) et te dit laquelle correspond, ce que tu valides déjà et ce qu'il te manque. C'est comme un diagnostic gratuit de ton éligibilité aux aides musicales.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">C'est pour qui ?</div>
+    <div class="faq-a"><p>Pour les artistes musicaux indépendants français : chanteurs, compositeurs, auteurs, producteurs. Si tu as un projet musical et que tu veux savoir si tu peux obtenir une aide financière, Tribartist est fait pour toi. Pas besoin d'avoir un SIRET, un label ou une structure — on te montre justement ce qu'il te faut.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Quelles subventions sont couvertes ?</div>
+    <div class="faq-a"><p>Toutes les principales subventions musicales françaises : CNM (Centre National de la Musique), ADAMI, SACEM, SPEDIDAM, SPPF, SCPP, et les aides régionales. On se concentre sur les aides qui financent l'enregistrement et la promotion musicale.</p></div>
   </div>
 </section>
 
 <div class="hr"></div>
 
-<section class="final-cta">
-  <h2>Your music deserves to be funded.<br>Not self-financed.</h2>
-  <p>Find a music funding specialist. Get funded. Release your music.</p>
-  <div class="hero-ctas">
-    <a href="https://tribartist-matchmaker.lovable.app/artiste/onboarding" class="btn-artist" onclick="posthog.capture('landing_cta_clicked', {cta: 'bottom_artist'})">
-      I'm an artist — get funded
+<!-- QUI EST DERRIÈRE -->
+<section class="founder">
+  <p class="sec-label">Qui est derrière Tribartist</p>
+  <p class="founder-name">Erwin</p>
+  <p class="founder-text">Fondateur de Tribartist, passionné par le financement des artistes indépendants. Une question ? Écris-moi directement à <a href="mailto:erwin@tribartist.com" class="founder-email">erwin@tribartist.com</a> ou via le chat en bas à droite.</p>
+</section>
+
+<div class="hr"></div>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <h2>Ton projet mérite d'être financé.<br>Pas autofinancé.</h2>
+  <p>1 minute. 0€. Ton Tribmatch t'attend.</p>
+  <div class="hero-ctas" style="animation:none">
+    <a href="https://tribartist-matchmaker.lovable.app/artiste/onboarding" class="btn-main" onclick="posthog.capture('cta_clicked',{cta:'bottom'})">
+      Découvre ton Tribmatch — c'est gratuit
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
-    <a href="https://tribartist-matchmaker.lovable.app/pro" class="btn-pro" onclick="posthog.capture('landing_cta_clicked', {cta: 'bottom_pro'})">
-      I'm a pro — get clients
     </a>
   </div>
 </section>
 
 <footer>
   <p class="foot-logo">Trib<span>artist</span></p>
-  <p>© 2026 Tribartist — The global music funding network</p>
+  <p>© 2026 Tribartist — Le hub du financement musical français</p>
   <p><a href="mailto:erwin@tribartist.com">erwin@tribartist.com</a></p>
 </footer>
 
 <script>
-var scrollTracked = {};
-window.addEventListener('scroll', function() {
-  var scrollPct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-  [25, 50, 75, 100].forEach(function(m) {
-    if (scrollPct >= m && !scrollTracked[m]) {
-      scrollTracked[m] = true;
-      posthog.capture('landing_scroll_depth', { depth: m });
-    }
-  });
-}, { passive: true });
+var st={};
+window.addEventListener('scroll',function(){
+  var p=Math.round((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100);
+  [25,50,75,100].forEach(function(m){if(p>=m&&!st[m]){st[m]=true;posthog.capture('scroll_depth',{depth:m})}});
+},{passive:true});
 </script>
 
 </body>
