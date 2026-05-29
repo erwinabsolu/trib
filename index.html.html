@@ -19,7 +19,6 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:rgba(5,5,5,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
 .logo{font-size:18px;font-weight:800;letter-spacing:-.5px}
 .logo span{color:var(--green)}
@@ -27,20 +26,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-cta{font-size:12px;font-weight:600;color:#000;background:var(--green);padding:8px 18px;border-radius:8px;transition:transform .2s,box-shadow .2s}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(29,185,84,.25)}
 
-/* HAMBURGER */
 .hamburger{width:32px;height:32px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;background:none;border:none;padding:4px;z-index:200}
 .hamburger s1,.hamburger s2,.hamburger s3{display:block;width:20px;height:2px;background:var(--muted);border-radius:2px;transition:all .3s ease}
 .hamburger.open s1{transform:rotate(45deg) translate(3px,5px)}
 .hamburger.open s2{opacity:0}
 .hamburger.open s3{transform:rotate(-45deg) translate(3px,-5px)}
 
-/* DROPDOWN MENU */
 .nav-menu{position:fixed;top:54px;right:0;width:240px;background:var(--card);border:1px solid var(--border);border-radius:0 0 0 12px;padding:8px 0;display:none;z-index:150;box-shadow:0 16px 48px rgba(0,0,0,.5)}
 .nav-menu.open{display:block}
 .nav-menu a{display:block;padding:12px 20px;font-size:13px;color:var(--muted);transition:color .2s,background .2s}
 .nav-menu a:hover{color:var(--white);background:var(--surface)}
 
-/* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative}
 .hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(29,185,84,.06) 0%,transparent 70%);pointer-events:none}
 .badge{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:5px 14px;border-radius:100px;font-size:11px;font-weight:500;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:28px;animation:fu .5s ease both}
@@ -55,7 +51,6 @@ h1 em{font-style:normal;background:linear-gradient(135deg,var(--green),var(--gre
 .btn-sec:hover{transform:translateY(-2px);border-color:var(--dimmed)}
 .hero-note{margin-top:14px;font-size:11px;color:var(--dimmed);animation:fu .5s ease .4s both}
 
-/* SECTIONS */
 .hr{height:1px;background:var(--border);margin:0 24px}
 .sec{max-width:640px;margin:0 auto;padding:56px 24px}
 .sec-label{font-size:10px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
@@ -98,7 +93,6 @@ footer{text-align:center;padding:28px 24px;border-top:1px solid var(--border)}
 footer p{font-size:11px;color:var(--dimmed);margin-top:3px}
 footer a{color:var(--muted)}
 
-/* LEGAL */
 .legal-page{display:none;max-width:640px;margin:0 auto;padding:100px 24px 60px}
 .legal-page.active{display:block}
 .legal-page h2{font-size:24px;font-weight:800;margin-bottom:8px}
@@ -136,7 +130,7 @@ footer a{color:var(--muted)}
   <a href="#faq" onclick="goTo('faq')">FAQ</a>
   <a href="#who" onclick="goTo('who')">Qui est derri&egrave;re</a>
   <a href="#rules" onclick="showPage('rules');toggleMenu()">R&egrave;glement du concours</a>
-  <a href="#terms" onclick="showPage('terms');toggleMenu()">CGV</a>
+  <a href="#terms" onclick="showPage('terms');toggleMenu()">CGU</a>
   <a href="#privacy" onclick="showPage('privacy');toggleMenu()">Confidentialit&eacute;</a>
 </div>
 
@@ -151,8 +145,8 @@ footer a{color:var(--muted)}
       Soumettre mon projet — gratuit
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
-    <a href="https://tribartist-matchmaker.lovable.app/espace" class="btn-sec" onclick="posthog.capture('cta_clicked',{cta:'hero_vote'})">
-      Soutenir un artiste — 2€/$
+    <a href="https://tribartist-matchmaker.lovable.app/espace" class="btn-sec" onclick="posthog.capture('cta_clicked',{cta:'hero_discover'})">
+      D&eacute;couvrir les projets
     </a>
   </div>
   <p class="hero-note">Inscription gratuite · Premier gagnant le 30 ao&ucirc;t 2026 · Ouvert &agrave; tous les artistes</p>
@@ -165,7 +159,7 @@ footer a{color:var(--muted)}
   <h2 class="sec-title">3 &eacute;tapes. Rien de plus.</h2>
   <div class="steps">
     <div class="step"><div class="step-num">1</div><div><p class="step-title">Inscris-toi et soumets ton projet</p><p class="step-desc">Ton nom d'artiste, un lien vers ta musique, une phrase sur ton projet. Gratuit.</p></div></div>
-    <div class="step"><div class="step-num">2</div><div><p class="step-title">Ta communaut&eacute; d&eacute;couvre ton projet</p><p class="step-desc">Ceux qui aiment ta musique peuvent te soutenir pour 2€/$. Chaque soutien compte.</p></div></div>
+    <div class="step"><div class="step-num">2</div><div><p class="step-title">Ta communaut&eacute; d&eacute;couvre ton projet</p><p class="step-desc">Ceux qui aiment ta musique peuvent te soutenir gratuitement. Chaque soutien compte.</p></div></div>
     <div class="step"><div class="step-num">3</div><div><p class="step-title">Le projet qui pla&icirc;t le plus est financ&eacute;</p><p class="step-desc">Le 30 ao&ucirc;t 2026, le projet qui a re&ccedil;u le plus de soutiens remporte le financement de son enregistrement ou de sa promo. Puis le cycle recommence.</p></div></div>
   </div>
 </section>
@@ -199,12 +193,11 @@ footer a{color:var(--muted)}
   <h2 class="sec-title">Claires et simples.</h2>
   <div class="modal-grid">
     <div class="modal-row"><span class="modal-key">Soumission</span><span class="modal-val">Gratuite</span></div>
-    <div class="modal-row"><span class="modal-key">Soutien</span><span class="modal-val">2€/$ par soutien (paiement unique)</span></div>
-    <div class="modal-row"><span class="modal-key">Devises</span><span class="modal-val">Toutes — factur&eacute; dans ta devise locale</span></div>
+    <div class="modal-row"><span class="modal-key">Soutien</span><span class="modal-val">Gratuit</span></div>
     <div class="modal-row"><span class="modal-key">S&eacute;lection du gagnant</span><span class="modal-val">Le projet qui pla&icirc;t le plus</span></div>
     <div class="modal-row"><span class="modal-key">Prochain gagnant</span><span class="modal-val">30 ao&ucirc;t 2026 &agrave; 23h59 UTC</span></div>
     <div class="modal-row"><span class="modal-key">Qui peut soumettre</span><span class="modal-val">Tout artiste musical dans le monde</span></div>
-    <div class="modal-row"><span class="modal-key">Qui peut soutenir</span><span class="modal-val">Tout le monde (inscription gratuite + 2€/$)</span></div>
+    <div class="modal-row"><span class="modal-key">Qui peut soutenir</span><span class="modal-val">Tout le monde (inscription gratuite)</span></div>
     <div class="modal-row"><span class="modal-key">Hasard</span><span class="modal-val">Aucun. Concours d'appr&eacute;ciation.</span></div>
   </div>
 </section>
@@ -214,13 +207,12 @@ footer a{color:var(--muted)}
 <section class="sec" id="faq">
   <p class="sec-label">Questions fr&eacute;quentes</p>
   <h2 class="sec-title">Tout est l&agrave;.</h2>
-  <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">C'est quoi Tribartist ?</div><div class="faq-a"><p>Un concours de financement musical communautaire. Les artistes soumettent leur projet gratuitement. La communaut&eacute; soutient les projets qu'elle aime (2€/$ par soutien). Le projet qui pla&icirc;t le plus remporte le financement de son enregistrement ou de sa promo.</p></div></div>
-  <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">C'est gratuit pour l'artiste ?</div><div class="faq-a"><p>Oui. L'inscription et la soumission sont 100% gratuites. Seul le soutien est payant (2€/$).</p></div></div>
+  <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">C'est quoi Tribartist ?</div><div class="faq-a"><p>Un concours de financement musical communautaire. Les artistes soumettent leur projet gratuitement. La communaut&eacute; soutient gratuitement les projets qu'elle aime. Le projet qui pla&icirc;t le plus remporte le financement de son enregistrement ou de sa promo.</p></div></div>
+  <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">C'est gratuit ?</div><div class="faq-a"><p>Oui. L'inscription, la soumission d'un projet et le soutien d'un projet sont 100% gratuits.</p></div></div>
   <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Comment le gagnant est choisi ?</div><div class="faq-a"><p>Par l'appr&eacute;ciation de la communaut&eacute;. Le projet qui re&ccedil;oit le plus de soutiens gagne. Pas de tirage au sort, pas de jury, pas de crit&egrave;res opaques. C'est la communaut&eacute; qui d&eacute;cide quel projet m&eacute;rite d'&ecirc;tre financ&eacute;. En toute transparence.</p></div></div>
-  <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Qui peut soutenir un projet ?</div><div class="faq-a"><p>Tout le monde. Il suffit de s'inscrire gratuitement et de soutenir le projet qui te pla&icirc;t pour 2€/$.</p></div></div>
+  <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Qui peut soutenir un projet ?</div><div class="faq-a"><p>Tout le monde. Il suffit de s'inscrire gratuitement et de soutenir le projet qui te pla&icirc;t.</p></div></div>
   <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Le financement couvre quoi exactement ?</div><div class="faq-a"><p>Une partie de l'enregistrement (studio, mixage, mastering) ou de la promotion (clip, pub, presse) de ton EP ou album.</p></div></div>
-  <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je peux annuler mon soutien ?</div><div class="faq-a"><p>Non. Le soutien est d&eacute;finitif et non remboursable.</p></div></div>
-  <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">C'est ouvert &agrave; tous les pays ?</div><div class="faq-a"><p>Oui. Tout artiste musical partout dans le monde. Paiement dans ta devise locale via Stripe.</p></div></div>
+  <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">C'est ouvert &agrave; tous les pays ?</div><div class="faq-a"><p>Oui. Tout artiste musical partout dans le monde peut participer.</p></div></div>
 </section>
 
 <div class="hr"></div>
@@ -241,11 +233,11 @@ footer a{color:var(--muted)}
       Soumettre mon projet — gratuit
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
-    <a href="https://tribartist-matchmaker.lovable.app/espace" class="btn-sec" onclick="posthog.capture('cta_clicked',{cta:'bottom_vote'})">
-      Soutenir un artiste — 2€/$
+    <a href="https://tribartist-matchmaker.lovable.app/espace" class="btn-sec" onclick="posthog.capture('cta_clicked',{cta:'bottom_discover'})">
+      D&eacute;couvrir les projets
     </a>
   </div>
-  <p style="margin-top:20px;font-size:11px;color:var(--dimmed);">En t'inscrivant tu acceptes le <a href="#rules" onclick="showPage('rules')" style="color:var(--muted);text-decoration:underline;">r&egrave;glement du concours</a>, les <a href="#terms" onclick="showPage('terms')" style="color:var(--muted);text-decoration:underline;">CGV</a> et la <a href="#privacy" onclick="showPage('privacy')" style="color:var(--muted);text-decoration:underline;">politique de confidentialit&eacute;</a>.</p>
+  <p style="margin-top:20px;font-size:11px;color:var(--dimmed);">En t'inscrivant tu acceptes le <a href="#rules" onclick="showPage('rules')" style="color:var(--muted);text-decoration:underline;">r&egrave;glement du concours</a>, les <a href="#terms" onclick="showPage('terms')" style="color:var(--muted);text-decoration:underline;">CGU</a> et la <a href="#privacy" onclick="showPage('privacy')" style="color:var(--muted);text-decoration:underline;">politique de confidentialit&eacute;</a>.</p>
 </section>
 
 </div>
@@ -261,16 +253,16 @@ footer a{color:var(--muted)}
   <p>Le concours Tribartist est organis&eacute; par Erwin Absolu, entrepreneur individuel, SIRET 990 310 641, RCS Bobigny. Email : erwin@tribartist.com.</p>
 
   <h3>Article 2 — Objet</h3>
-  <p>Tribartist est un concours communautaire de financement musical. Les artistes soumettent leur projet gratuitement. La communaut&eacute; soutient les projets qu'elle appr&eacute;cie (2€/$ par soutien). Le projet ayant re&ccedil;u le plus de soutiens est financ&eacute;. La s&eacute;lection repose exclusivement sur l'appr&eacute;ciation de la communaut&eacute; — aucune intervention du hasard. Il s'agit d'un concours au sens de l'article L320-1 du Code de la s&eacute;curit&eacute; int&eacute;rieure. Ce concours est soumis au droit fran&ccedil;ais. Les participants internationaux acceptent cette juridiction en rejoignant.</p>
+  <p>Tribartist est un concours communautaire de financement musical. Les artistes soumettent leur projet gratuitement. La communaut&eacute; soutient gratuitement les projets qu'elle appr&eacute;cie. Le projet ayant re&ccedil;u le plus de soutiens est financ&eacute;. La s&eacute;lection repose exclusivement sur l'appr&eacute;ciation de la communaut&eacute; — aucune intervention du hasard. Il s'agit d'un concours au sens de l'article L320-1 du Code de la s&eacute;curit&eacute; int&eacute;rieure. Ce concours est soumis au droit fran&ccedil;ais. Les participants internationaux acceptent cette juridiction en rejoignant.</p>
 
   <h3>Article 3 — Conditions de participation</h3>
-  <p>Ouvert &agrave; toute personne physique majeure (18 ans ou plus), sans restriction de nationalit&eacute;. La soumission d'un projet est gratuite et conditionn&eacute;e &agrave; la cr&eacute;ation d'un compte (email + mot de passe). Le soutien d'un projet est payant (2€/$ par soutien, paiement unique) et conditionn&eacute; &agrave; la cr&eacute;ation d'un compte. En soumettant un projet, le participant accepte l'int&eacute;gralit&eacute; du pr&eacute;sent r&egrave;glement, y compris les obligations li&eacute;es au droit &agrave; l'image (article 9) et les conditions de versement de la dotation (article 7).</p>
+  <p>Ouvert &agrave; toute personne physique majeure (18 ans ou plus), sans restriction de nationalit&eacute;. La soumission d'un projet et le soutien d'un projet sont gratuits et conditionn&eacute;s &agrave; la cr&eacute;ation d'un compte (email + mot de passe). En soumettant un projet, le participant accepte l'int&eacute;gralit&eacute; du pr&eacute;sent r&egrave;glement, y compris les obligations li&eacute;es au droit &agrave; l'image (article 9) et les conditions de versement de la dotation (article 7).</p>
 
   <h3>Article 4 — Soumission</h3>
   <p>Chaque membre peut soumettre un projet : nom d'artiste, lien musical, description courte. Modifiable jusqu'&agrave; la cl&ocirc;ture. Un projet par cycle.</p>
 
   <h3>Article 5 — Soutien</h3>
-  <p>Chaque soutien co&ucirc;te 2€/$ (ou &eacute;quivalent en devise locale via Stripe). Le soutien est une marque d'appr&eacute;ciation pour un projet. Le soutien est d&eacute;finitif et non remboursable. Conform&eacute;ment &agrave; l'article L221-28 du Code de la consommation, le soutien &eacute;tant ex&eacute;cut&eacute; imm&eacute;diatement apr&egrave;s le paiement (soutien enregistr&eacute;), le membre renonce express&eacute;ment &agrave; son droit de r&eacute;tractation de 14 jours.</p>
+  <p>Le soutien est gratuit. Chaque membre peut soutenir les projets qu'il appr&eacute;cie. Le soutien est une marque d'appr&eacute;ciation pour un projet. Un membre ne peut soutenir un m&ecirc;me projet qu'une seule fois.</p>
 
   <h3>Article 6 — D&eacute;signation du gagnant</h3>
   <p>&Agrave; la cl&ocirc;ture du cycle (30 ao&ucirc;t 2026 &agrave; 23h59 UTC pour le premier cycle), le projet avec le plus de soutiens gagne. En cas d'&eacute;galit&eacute;, le projet soumis en premier est d&eacute;clar&eacute; gagnant. Aucun jury, aucun tirage au sort.</p>
@@ -285,7 +277,7 @@ footer a{color:var(--muted)}
   <p>En soumettant un projet, le participant accepte que, en cas de victoire : son nom d'artiste, son image, sa voix et son projet soient utilis&eacute;s par Tribartist &agrave; des fins promotionnelles, sans limitation de dur&eacute;e ni de territoire, sur tous supports (r&eacute;seaux sociaux, site web, email, publicit&eacute;, supports imprim&eacute;s, vid&eacute;o, podcast). Il participe &agrave; au moins une vid&eacute;o promotionnelle individuelle (t&eacute;moignage solo) dans les 30 jours suivant l'annonce de sa victoire. Il participe &agrave; au moins une vid&eacute;o promotionnelle en duo avec le fondateur de Tribartist dans les 30 jours suivant l'annonce. Il autorise la captation vid&eacute;o et photographique de la remise du prix. Il autorise la publication et la diffusion de l'ensemble de ces contenus par Tribartist &agrave; des fins promotionnelles, sans limitation de dur&eacute;e ni de territoire. Il autorise Tribartist &agrave; utiliser son t&eacute;moignage &eacute;crit ou oral &agrave; des fins promotionnelles. Cette cession du droit &agrave; l'image et ces obligations promotionnelles sont des conditions essentielles de participation au concours. Elles sont accept&eacute;es par le simple fait de soumettre un projet. Le non-respect de ces obligations entra&icirc;ne la perte de la dotation conform&eacute;ment &agrave; l'article 8.</p>
 
   <h3>Article 10 — Annulation</h3>
-  <p>Un membre peut supprimer son compte &agrave; tout moment. Les soutiens d&eacute;j&agrave; effectu&eacute;s ne sont pas rembours&eacute;s.</p>
+  <p>Un membre peut supprimer son compte &agrave; tout moment.</p>
 
   <h3>Article 11 — Donn&eacute;es personnelles</h3>
   <p>Donn&eacute;es trait&eacute;es conform&eacute;ment au RGPD. Non vendues ni partag&eacute;es. Voir la politique de confidentialit&eacute;.</p>
@@ -302,31 +294,25 @@ footer a{color:var(--muted)}
 
 <div id="page-terms" class="legal-page">
   <div class="legal-back" onclick="showMain()">&larr; Retour</div>
-  <h2>Conditions g&eacute;n&eacute;rales de vente</h2>
+  <h2>Conditions g&eacute;n&eacute;rales d'utilisation</h2>
   <p class="legal-date">En vigueur : 1er juin 2026</p>
 
   <h3>Article 1 — Objet</h3>
-  <p>Les pr&eacute;sentes CGV r&eacute;gissent l'utilisation de Tribartist, organis&eacute; par Erwin Absolu (SIRET 990 310 641, RCS Bobigny).</p>
+  <p>Les pr&eacute;sentes CGU r&eacute;gissent l'utilisation de Tribartist, organis&eacute; par Erwin Absolu (SIRET 990 310 641, RCS Bobigny).</p>
 
   <h3>Article 2 — Services</h3>
-  <p>Tribartist propose : la cr&eacute;ation d'un compte gratuit, la soumission gratuite d'un projet musical, et le soutien payant (2€/$ par soutien) d'un projet soumis par un autre membre.</p>
+  <p>Tribartist propose gratuitement : la cr&eacute;ation d'un compte, la soumission d'un projet musical, et le soutien des projets soumis par d'autres membres. L'ensemble des services est gratuit.</p>
 
-  <h3>Article 3 — Prix</h3>
-  <p>Le soutien est factur&eacute; 2€ (ou &eacute;quivalent en devise locale via Stripe). Paiement unique par soutien. Le prix peut &ecirc;tre modifi&eacute; par l'Organisateur pour les cycles futurs.</p>
+  <h3>Article 3 — Gratuit&eacute;</h3>
+  <p>Tribartist est enti&egrave;rement gratuit pour les membres. Aucun paiement n'est requis pour s'inscrire, soumettre un projet ou soutenir un projet.</p>
 
-  <h3>Article 4 — Droit de r&eacute;tractation</h3>
-  <p>Conform&eacute;ment &agrave; l'article L221-28 du Code de la consommation, le soutien &eacute;tant ex&eacute;cut&eacute; imm&eacute;diatement apr&egrave;s le paiement, le membre renonce express&eacute;ment &agrave; son droit de r&eacute;tractation de 14 jours. Cette renonciation est accept&eacute;e lors de l'inscription via la case &agrave; cocher obligatoire.</p>
-
-  <h3>Article 5 — Remboursement</h3>
-  <p>Les soutiens ne sont pas remboursables.</p>
-
-  <h3>Article 6 — Propri&eacute;t&eacute; intellectuelle et droit &agrave; l'image</h3>
+  <h3>Article 4 — Propri&eacute;t&eacute; intellectuelle et droit &agrave; l'image</h3>
   <p>En soumettant un projet, le participant conserve l'int&eacute;gralit&eacute; de ses droits de propri&eacute;t&eacute; intellectuelle sur son &oelig;uvre musicale. Cependant, en cas de victoire, le participant c&egrave;de &agrave; Tribartist un droit d'utilisation de son image, sa voix, son nom d'artiste et son t&eacute;moignage &agrave; des fins promotionnelles, sans limitation de dur&eacute;e ni de territoire, conform&eacute;ment &agrave; l'article 9 du r&egrave;glement du concours.</p>
 
-  <h3>Article 7 — Responsabilit&eacute;</h3>
+  <h3>Article 5 — Responsabilit&eacute;</h3>
   <p>Service fourni "en l'&eacute;tat." L'Organisateur ne garantit pas l'obtention d'un financement.</p>
 
-  <h3>Article 8 — Droit applicable</h3>
+  <h3>Article 6 — Droit applicable</h3>
   <p>Droit fran&ccedil;ais. Tribunaux comp&eacute;tents de Bobigny.</p>
 </div>
 
@@ -339,13 +325,13 @@ footer a{color:var(--muted)}
   <p>Erwin Absolu, SIRET 990 310 641, RCS Bobigny. Email : erwin@tribartist.com.</p>
 
   <h3>2. Donn&eacute;es collect&eacute;es</h3>
-  <p>Inscription : adresse email. Paiement : g&eacute;r&eacute; par Stripe — Tribartist ne stocke aucune donn&eacute;e bancaire. Projet : nom d'artiste, lien musical, description. Navigation : donn&eacute;es d'usage via PostHog (EU). En cas de victoire : image, voix, t&eacute;moignage du gagnant collect&eacute;s lors des vid&eacute;os promotionnelles.</p>
+  <p>Inscription : adresse email, num&eacute;ro de t&eacute;l&eacute;phone. Projet : nom d'artiste, lien musical, description. Navigation : donn&eacute;es d'usage via PostHog (EU). En cas de victoire : image, voix, t&eacute;moignage du gagnant collect&eacute;s lors des vid&eacute;os promotionnelles.</p>
 
   <h3>3. Finalit&eacute;</h3>
   <p>G&eacute;rer les comptes, organiser le concours, communiquer avec les membres, am&eacute;liorer la plateforme, produire et diffuser des contenus promotionnels conform&eacute;ment &agrave; l'article 9 du r&egrave;glement du concours.</p>
 
   <h3>4. Partage</h3>
-  <p>Donn&eacute;es non vendues. Partag&eacute;es uniquement avec : Stripe (paiement), Supabase (h&eacute;bergement EU), PostHog (analytics EU), Brevo (email).</p>
+  <p>Donn&eacute;es non vendues. Partag&eacute;es uniquement avec : Supabase (h&eacute;bergement EU), PostHog (analytics EU), Brevo (email).</p>
 
   <h3>5. Conservation</h3>
   <p>Pendant la dur&eacute;e du compte + 12 mois apr&egrave;s suppression, sauf demande de suppression anticip&eacute;e. Les contenus promotionnels (vid&eacute;os, photos, t&eacute;moignages) du gagnant sont conserv&eacute;s sans limitation de dur&eacute;e conform&eacute;ment &agrave; la cession de droit &agrave; l'image accept&eacute;e lors de la soumission du projet.</p>
@@ -366,11 +352,10 @@ footer a{color:var(--muted)}
 <footer>
   <p class="foot-logo">Trib<span>artist</span></p>
   <p>&copy; 2026 Tribartist — Le concours de financement musical communautaire</p>
-  <p><a href="mailto:erwin@tribartist.com">erwin@tribartist.com</a> · <a href="#rules" onclick="showPage('rules')" style="text-decoration:underline">R&egrave;glement</a> · <a href="#terms" onclick="showPage('terms')" style="text-decoration:underline">CGV</a> · <a href="#privacy" onclick="showPage('privacy')" style="text-decoration:underline">Confidentialit&eacute;</a></p>
+  <p><a href="mailto:erwin@tribartist.com">erwin@tribartist.com</a> · <a href="#rules" onclick="showPage('rules')" style="text-decoration:underline">R&egrave;glement</a> · <a href="#terms" onclick="showPage('terms')" style="text-decoration:underline">CGU</a> · <a href="#privacy" onclick="showPage('privacy')" style="text-decoration:underline">Confidentialit&eacute;</a></p>
 </footer>
 
 <script>
-// Hamburger menu
 function toggleMenu(){
   var btn=document.getElementById('hamburgerBtn');
   var menu=document.getElementById('navMenu');
@@ -382,7 +367,6 @@ function goTo(id){
   showMain();
   setTimeout(function(){document.getElementById(id).scrollIntoView({behavior:'smooth'})},100);
 }
-// Close menu on outside click
 document.addEventListener('click',function(e){
   var menu=document.getElementById('navMenu');
   var btn=document.getElementById('hamburgerBtn');
@@ -391,8 +375,6 @@ document.addEventListener('click',function(e){
     menu.classList.remove('open');
   }
 });
-
-// Legal pages
 function showPage(page){
   document.getElementById('mainContent').classList.add('hidden');
   document.querySelectorAll('.legal-page').forEach(function(p){p.classList.remove('active')});
@@ -409,8 +391,6 @@ if(window.location.hash){
   var h=window.location.hash.replace('#','');
   if(['rules','terms','privacy'].indexOf(h)>-1)showPage(h);
 }
-
-// Scroll tracking
 var st={};
 window.addEventListener('scroll',function(){
   var p=Math.round((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100);
