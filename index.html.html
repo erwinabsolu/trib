@@ -102,6 +102,25 @@ footer a{color:var(--muted)}
 .legal-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--green);margin-bottom:24px;cursor:pointer}
 .legal-back:hover{text-decoration:underline}
 
+/* TOP PROJECTS */
+.top-projects{max-width:640px;margin:0 auto;padding:40px 24px 56px}
+.top-projects-title{font-size:10px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+.top-projects-sub{font-size:clamp(20px,4vw,28px);font-weight:800;letter-spacing:-.8px;margin-bottom:20px;color:var(--white)}
+.tp-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px;position:relative}
+.tp-card:first-child .tp-badge{background:var(--green);color:#000}
+.tp-rank{position:absolute;top:14px;left:16px;font-size:11px;font-weight:800;color:var(--dimmed)}
+.tp-badge{position:absolute;top:12px;right:12px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:99px;background:transparent;border:1px solid var(--border);color:var(--muted)}
+.tp-name{font-size:16px;font-weight:700;color:var(--white);margin:0 0 5px;padding-right:90px}
+.tp-desc{font-size:12px;color:var(--muted);line-height:1.4;margin:0 0 10px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis}
+.tp-desc.expanded{-webkit-line-clamp:unset;display:block}
+.tp-more{font-size:11px;color:var(--dimmed);cursor:pointer;margin:0 0 10px;display:none}
+.tp-more.visible{display:inline}
+.tp-more:hover{color:var(--green)}
+.tp-listen{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--green);text-decoration:none}
+.tp-listen:hover{text-decoration:underline}
+.tp-listen svg{flex-shrink:0}
+.tp-empty{display:none}
+
 #mainContent{display:block}
 #mainContent.hidden{display:none}
 
@@ -150,6 +169,16 @@ footer a{color:var(--muted)}
     </a>
   </div>
   <p class="hero-note">Inscription gratuite · Premier gagnant le 30 ao&ucirc;t 2026 · Ouvert &agrave; tous les artistes</p>
+</section>
+
+<!-- TOP 3 PROJECTS -->
+<section class="top-projects" id="top-projects-section" style="display:none;">
+  <p class="top-projects-title">En ce moment</p>
+  <h2 class="top-projects-sub">Les projets les plus soutenus.</h2>
+  <div id="top-projects-list"></div>
+  <div style="margin-top:16px;text-align:center;">
+    <a href="https://tribartist-matchmaker.lovable.app/espace" style="font-size:12px;color:var(--muted);text-decoration:underline;" onclick="posthog.capture('cta_clicked',{cta:'top_projects_discover'})">D&eacute;couvrir tous les projets</a>
+  </div>
 </section>
 
 <div class="hr"></div>
@@ -396,6 +425,57 @@ window.addEventListener('scroll',function(){
   var p=Math.round((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100);
   [25,50,75,100].forEach(function(m){if(p>=m&&!st[m]){st[m]=true;posthog.capture('scroll_depth',{depth:m})}});
 },{passive:true});
+
+// TOP 3 PROJECTS - Fetch from Supabase
+(function(){
+  var SUPABASE_URL='https://iifurhuwyancrlmvffld.supabase.co';
+  var SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlpZnVyaHV3eWFuY3JsbXZmZmxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1MTc5MjQsImV4cCI6MjA5MDA5MzkyNH0.jNTyzDL_iLIlWVyQDHXezJnxAL9pp_o4EZnm7KA7acw';
+
+  fetch(SUPABASE_URL+'/rest/v1/fonds_projets?select=id,nom_artiste,lien_musical,description,soutiens_count&cycle=eq.2026-08&order=soutiens_count.desc&limit=3',{
+    headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY}
+  })
+  .then(function(r){return r.json()})
+  .then(function(projects){
+    if(!projects||projects.length===0)return;
+    var sec=document.getElementById('top-projects-section');
+    var list=document.getElementById('top-projects-list');
+    sec.style.display='block';
+    projects.forEach(function(p,i){
+      var descTooLong=p.description&&p.description.length>60;
+      var card=document.createElement('div');
+      card.className='tp-card';
+      card.innerHTML=
+        '<div class="tp-badge">'+p.soutiens_count+' soutien'+(p.soutiens_count>1?'s':'')+'</div>'+
+        '<p class="tp-name">'+esc(p.nom_artiste)+'</p>'+
+        '<p class="tp-desc" id="desc-'+i+'">'+esc(p.description||'')+'</p>'+
+        (descTooLong?'<span class="tp-more visible" onclick="toggleDesc('+i+')">voir plus</span>':'')+
+        '<a href="'+esc(p.lien_musical)+'" target="_blank" rel="noopener" class="tp-listen" onclick="posthog.capture(\'top_project_listen\',{projet_id:\''+p.id+'\'})">'+
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>'+
+          '&Eacute;couter'+
+        '</a>';
+      list.appendChild(card);
+    });
+  })
+  .catch(function(e){console.log('[top-projects] Erreur:',e)});
+
+  window.toggleDesc=function(i){
+    var desc=document.getElementById('desc-'+i);
+    var more=desc.nextElementSibling;
+    if(desc.classList.contains('expanded')){
+      desc.classList.remove('expanded');
+      more.textContent='voir plus';
+    }else{
+      desc.classList.add('expanded');
+      more.textContent='voir moins';
+    }
+  };
+
+  function esc(s){
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+})();
 </script>
 
 </body>
