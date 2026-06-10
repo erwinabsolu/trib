@@ -33,6 +33,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-r{display:flex;align-items:center;gap:12px}
 .nav-cta{font-size:12px;font-weight:600;color:#000;background:var(--green);padding:9px 18px;border-radius:9px;transition:transform .2s,box-shadow .2s}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(29,185,84,.3)}
+.nav-login{font-size:13px;font-weight:600;color:var(--muted);transition:color .2s}
+.nav-login:hover{color:var(--white)}
 .hamburger{width:34px;height:34px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;background:none;border:none;padding:5px}
 .hamburger s1,.hamburger s2,.hamburger s3{display:block;width:20px;height:2px;background:var(--muted);border-radius:2px;transition:all .3s ease}
 .hamburger.open s1{transform:rotate(45deg) translate(3px,5px)}
@@ -133,6 +135,8 @@ h1{font-size:clamp(34px,7.5vw,64px);font-weight:900;line-height:1.02;letter-spac
 .founder{max-width:520px;margin:0 auto;padding:52px 24px;text-align:center}
 .founder .eyebrow{margin-bottom:14px}
 .founder p{font-size:15px;color:var(--muted);line-height:1.75}
+.founder p+p{margin-top:14px}
+.founder .punch{color:var(--white);font-weight:700;font-size:17px}
 .founder a{color:var(--green);font-weight:600}
 
 /* FINAL CTA */
@@ -184,6 +188,7 @@ footer .tag{font-size:11px;color:var(--dimmed);margin-bottom:10px}
 <nav>
   <a href="/" class="logo" onclick="showMain();return false;">Trib<span>artist</span></a>
   <div class="nav-r">
+    <a href="https://tribartist-matchmaker.lovable.app/connexion" class="nav-login" onclick="posthog.capture('cta_clicked',{cta:'nav_login'})">Se connecter</a>
     <a href="#join" class="nav-cta" onclick="scrollJoin();return false;">Je participe</a>
     <button class="hamburger" id="hb" onclick="toggleMenu()" aria-label="Menu"><s1></s1><s2></s2><s3></s3></button>
   </div>
@@ -311,7 +316,10 @@ footer .tag{font-size:11px;color:var(--dimmed);margin-bottom:10px}
   <!-- QUI EST DERRIÈRE -->
   <section class="founder" id="who">
     <p class="eyebrow">Qui est derri&egrave;re</p>
-    <p>Moi c'est <strong style="color:#fff;">Erwin</strong>. J'ai mont&eacute; Tribartist pour qu'aucun artiste n'ait &agrave; renoncer &agrave; son projet faute de moyens. Une question, un doute&nbsp;? &Eacute;cris-moi&nbsp;: <a href="mailto:erwin@tribartist.com">erwin@tribartist.com</a>.</p>
+    <p>Moi c'est <strong style="color:#fff;">Erwin</strong>.</p>
+    <p>J'ai vu trop d'artistes incroyables laisser tomber leur projet parce qu'ils n'avaient pas l'argent. <span class="punch">Pas le talent — l'argent.</span></p>
+    <p>Alors j'ai cr&eacute;&eacute; Tribartist. Une id&eacute;e simple&nbsp;: chaque mois, on donne &agrave; un artiste les moyens d'avancer. Et un jour, je veux que plus personne n'ait &agrave; abandonner sa musique faute de moyens.</p>
+    <p>Une question, un doute&nbsp;? &Eacute;cris-moi&nbsp;: <a href="mailto:erwin@tribartist.com">erwin@tribartist.com</a>.</p>
   </section>
 
   <div class="hr"></div>
