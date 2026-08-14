@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f4f3c" />
+  <meta name="description" content="Trouve les aides qui peuvent financer ton projet musical sans passer des heures à chercher." />
+  <title>Tribartist — Aides musicales 2026</title>
+
+  <style>
+    :root{
+      --green:#0f4f3c;
+      --green-2:#17644c;
+      --mint:#79d59a;
+      --mint-soft:#daf2e3;
+      --ink:#0d1713;
+      --muted:#66736d;
+      --paper:#f6f8f5;
+      --white:#fff;
+      --line:#dfe6e1;
+      --shadow:0 20px 60px rgba(24,45,35,.12);
+      --max:1180px;
+      --radius-xl:32px;
+      --radius-lg:24px;
+      --radius-md:18px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    .container{width:min(calc(100% - 32px),var(--max));margin-inline:auto}
+
+    /* HEADER */
+    .hero-wrap{
+      background:var(--green);
+      color:#fff;
+      padding-bottom:180px;
+    }
+
+    .nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:20px;
+    }
+
+    .brand{
+      font-size:1.35rem;
+      font-weight:900;
+      letter-spacing:-.035em;
+    }
+
+    /* HERO */
+    .hero{
+      padding:48px 0 54px;
+      text-align:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      margin-bottom:22px;
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:#cfe7dc;
+    }
+
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--mint);
+      box-shadow:0 0 0 6px rgba(121,213,154,.12);
+    }
+
+    h1,h2,h3,p{margin-top:0}
+
+    h1{
+      max-width:950px;
+      margin:0 auto 24px;
+      font-size:clamp(2.65rem,8.2vw,6.1rem);
+      line-height:.95;
+      letter-spacing:-.072em;
+      font-weight:850;
+    }
+
+    .accent{color:var(--mint)}
+
+    .hero p{
+      max-width:760px;
+      margin:0 auto;
+      font-size:clamp(1rem,2.7vw,1.3rem);
+      color:#e2eee8;
+    }
+
+    /* ACTIVATION */
+    .activation-shell{
+      margin-top:-122px;
+      position:relative;
+      z-index:5;
+    }
+
+    .activation{
+      overflow:hidden;
+      border:14px solid #fff;
+      border-radius:var(--radius-xl);
+      background:#fff;
+      box-shadow:var(--shadow);
+    }
+
+    .activation-grid{
+      display:grid;
+      background:#f3f5f2;
+    }
+
+    .activation-preview{
+      min-height:260px;
+      padding:24px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(121,213,154,.35), transparent 30%),
+        linear-gradient(145deg,#dcebe4,#bfd8cb);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .mini-board{
+      width:min(100%,420px);
+      padding:16px;
+      border-radius:24px;
+      background:rgba(255,255,255,.93);
+      box-shadow:0 16px 40px rgba(15,79,60,.18);
+      transform:rotate(-1.3deg);
+    }
+
+    .mini-board-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:14px;
+      font-weight:800;
+      font-size:.84rem;
+    }
+
+    .verified{
+      padding:5px 8px;
+      border-radius:999px;
+      background:#e8f6ed;
+      color:#216844;
+      font-size:.68rem;
+      font-weight:800;
+    }
+
+    .mini-aid{
+      padding:12px 0;
+      border-top:1px solid #e7ece8;
+    }
+
+    .mini-aid:first-of-type{border-top:0}
+    .mini-aid-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom:8px;
+    }
+
+    .mini-aid strong{
+      display:block;
+      font-size:.86rem;
+      line-height:1.25;
+      letter-spacing:-.015em;
+    }
+
+    .mini-aid .amount{
+      white-space:nowrap;
+      color:var(--green);
+      font-weight:900;
+      font-size:.82rem;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+    }
+
+    .chip{
+      padding:5px 7px;
+      border-radius:999px;
+      background:#edf2ef;
+      color:#53615a;
+      font-size:.64rem;
+      font-weight:700;
+    }
+
+    .activation-form{
+      padding:30px 24px 28px;
+    }
+
+    .kicker{
+      margin-bottom:10px;
+      color:var(--green-2);
+      font-size:.76rem;
+      font-weight:850;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .activation-form h2{
+      margin-bottom:10px;
+      font-size:clamp(2rem,6vw,3.1rem);
+      line-height:1.02;
+      letter-spacing:-.055em;
+    }
+
+    .activation-form > p{
+      margin-bottom:22px;
+      color:var(--muted);
+    }
+
+    .field-label{
+      display:block;
+      margin-bottom:9px;
+      font-size:.86rem;
+      font-weight:800;
+    }
+
+    .need-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:14px;
+    }
+
+    .need-option{
+      position:relative;
+    }
+
+    .need-option input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .need-option label{
+      min-height:52px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border:1px solid #cfd8d2;
+      border-radius:14px;
+      background:#fff;
+      color:#334139;
+      font-size:.86rem;
+      font-weight:780;
+      text-align:center;
+      transition:.18s ease;
+      cursor:pointer;
+    }
+
+    .need-option input:checked + label{
+      border-color:var(--green);
+      background:#e9f5ed;
+      color:var(--green);
+      box-shadow:inset 0 0 0 1px var(--green);
+    }
+
+    .activation-action{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+
+    .activation-note{
+      margin:10px 0 0!important;
+      font-size:.78rem;
+      color:#7a867f!important;
+    }
+
+    .button{
+      min-height:54px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:0;
+      border-radius:999px;
+      padding:0 24px;
+      font-weight:850;
+      transition:.18s ease;
+    }
+
+    .button-dark{
+      background:var(--green);
+      color:#fff;
+      box-shadow:0 14px 28px rgba(15,79,60,.18);
+    }
+
+    .button-dark:hover{transform:translateY(-1px);background:#0b4535}
+    .button-mint{background:var(--mint);color:#0c3c2d}
+    .button-mint:hover{transform:translateY(-1px);filter:brightness(.98)}
+
+    .trust-row{
+      display:grid;
+      margin-top:18px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:#fff;
+      overflow:hidden;
+    }
+
+    .trust-item{
+      padding:12px 16px;
+      text-align:center;
+      border-bottom:1px solid var(--line);
+    }
+
+    .trust-item:last-child{border-bottom:0}
+    .trust-item strong{
+      display:block;
+      font-size:.74rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:2px;
+    }
+    .trust-item span{color:var(--muted);font-size:.82rem}
+
+    /* SECTIONS */
+    .section{padding:84px 0}
+
+    .section-head{
+      margin-bottom:38px;
+    }
+
+    .section-kicker{
+      margin-bottom:12px;
+      font-size:.76rem;
+      font-weight:850;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      color:#58655f;
+    }
+
+    .section-title{
+      max-width:900px;
+      margin-bottom:16px;
+      font-size:clamp(2.4rem,7vw,5.2rem);
+      line-height:.98;
+      letter-spacing:-.065em;
+      font-weight:820;
+    }
+
+    .section-copy{
+      max-width:760px;
+      color:var(--muted);
+      font-size:1.05rem;
+    }
+
+    /* BENEFITS */
+    .benefit-layout{
+      display:grid;
+      gap:30px;
+      align-items:center;
+    }
+
+    .visual-card{
+      min-height:420px;
+      border-radius:var(--radius-xl);
+      background:
+        linear-gradient(145deg,rgba(121,213,154,.22),rgba(15,79,60,.05)),
+        #e8eee9;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:30px;
+    }
+
+    .quote-panel{
+      width:min(100%,460px);
+      padding:28px;
+      border-radius:26px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 18px 44px rgba(30,58,43,.08);
+    }
+
+    .quote-panel blockquote{
+      margin:0 0 16px;
+      font-size:clamp(1.5rem,4vw,2.4rem);
+      line-height:1.12;
+      letter-spacing:-.045em;
+      font-weight:800;
+    }
+
+    .quote-panel cite{
+      font-style:normal;
+      color:var(--muted);
+      font-size:.85rem;
+      font-weight:700;
+    }
+
+    .benefit-list{
+      display:grid;
+      gap:0;
+    }
+
+    .benefit-item{
+      display:grid;
+      grid-template-columns:44px 1fr;
+      gap:16px;
+      padding:22px 0;
+      border-bottom:1px solid var(--line);
+    }
+
+    .benefit-item:last-child{border-bottom:0}
+    .num{
+      width:40px;
+      height:40px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:#2ba26f;
+      color:#fff;
+      font-weight:900;
+    }
+
+    .benefit-item h3{
+      margin-bottom:6px;
+      font-size:1.24rem;
+      letter-spacing:-.03em;
+    }
+
+    .benefit-item p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    /* HOW */
+    .soft-section{background:#eef1ed}
+    .steps{
+      display:grid;
+      gap:14px;
+    }
+
+    .step{
+      padding:28px 24px;
+      border-radius:30px;
+      background:#fff;
+      min-height:240px;
+    }
+
+    .step .step-num{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:#063d2f;
+      color:#fff;
+      font-weight:900;
+      margin-bottom:34px;
+    }
+
+    .step h3{
+      margin-bottom:14px;
+      font-size:1.45rem;
+      letter-spacing:-.035em;
+    }
+
+    .step p{margin:0;color:var(--muted)}
+
+    /* REAL BENEFIT */
+    .real-layout{
+      display:grid;
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .verbatim-stack{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .verbatim{
+      min-height:250px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:24px;
+      border-radius:30px;
+      overflow:hidden;
+      color:#fff;
+      background:
+        linear-gradient(180deg,rgba(15,79,60,.05),rgba(15,79,60,.78)),
+        linear-gradient(145deg,#8fc9ad,#356b58);
+    }
+
+    .verbatim:nth-child(2){
+      background:
+        linear-gradient(180deg,rgba(15,79,60,.04),rgba(15,79,60,.82)),
+        linear-gradient(145deg,#d7c8ac,#766349);
+    }
+
+    .verbatim strong{
+      font-size:1.15rem;
+      line-height:1.3;
+      letter-spacing:-.025em;
+    }
+
+    .verbatim span{
+      margin-top:10px;
+      font-size:.76rem;
+      color:#deebe4;
+      font-weight:700;
+    }
+
+    .real-card{
+      padding:30px;
+      border:1px solid var(--line);
+      border-radius:30px;
+      background:#fff;
+    }
+
+    .real-card h2{
+      margin:0 0 18px;
+      font-size:clamp(2.5rem,7vw,4.7rem);
+      line-height:.98;
+      letter-spacing:-.06em;
+    }
+
+    .real-card > p{color:var(--muted);font-size:1.05rem}
+
+    .ticks{
+      display:grid;
+      gap:16px;
+      margin-top:30px;
+    }
+
+    .tick{
+      display:grid;
+      grid-template-columns:20px 1fr;
+      gap:12px;
+      align-items:start;
+      font-weight:720;
+    }
+
+    .tick-mark{color:var(--green);font-weight:900}
+
+    /* CTA PANEL */
+    .cta-panel{
+      padding:34px;
+      border-radius:34px;
+      background:var(--green);
+      color:#fff;
+      overflow:hidden;
+    }
+
+    .cta-grid{
+      display:grid;
+      gap:28px;
+      align-items:center;
+    }
+
+    .cta-panel .section-kicker{color:#a8cab9}
+    .cta-panel h2{
+      margin-bottom:16px;
+      font-size:clamp(2.6rem,7vw,5rem);
+      line-height:.98;
+      letter-spacing:-.06em;
+    }
+    .cta-panel p{
+      max-width:650px;
+      color:#d8e8df;
+      font-size:1.04rem;
+    }
+
+    .price-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin:8px 0 22px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.11);
+      font-weight:800;
+      font-size:.84rem;
+    }
+
+    .cta-preview{
+      min-height:320px;
+      display:grid;
+      place-items:center;
+      border-radius:30px;
+      background:#f7f9f6;
+      color:var(--ink);
+      padding:22px;
+    }
+
+    .cta-preview .mini-board{
+      transform:none;
+      box-shadow:none;
+      border:1px solid var(--line);
+    }
+
+    /* FAQ */
+    .faq-layout{
+      display:grid;
+      gap:34px;
+    }
+
+    .faq-title h2{
+      font-size:clamp(3rem,8vw,5rem);
+      line-height:.98;
+      letter-spacing:-.06em;
+    }
+
+    .faq-title p{color:var(--muted)}
+
+    details{
+      border-top:1px solid var(--line);
+      padding:22px 0;
+    }
+
+    details:last-child{border-bottom:1px solid var(--line)}
+    summary{
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      cursor:pointer;
+      font-weight:800;
+      font-size:1.05rem;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary::after{
+      content:"+";
+      width:38px;
+      height:38px;
+      flex:0 0 38px;
+      display:grid;
+      place-items:center;
+      border:1px solid #cfd7d2;
+      border-radius:50%;
+      font-size:1.35rem;
+      font-weight:500;
+    }
+    details[open] summary::after{content:"–"}
+    details p{
+      margin:14px 56px 0 0;
+      color:var(--muted);
+    }
+
+    /* STICKY CTA */
+    .sticky-cta{
+      position:fixed;
+      left:14px;
+      right:14px;
+      bottom:14px;
+      z-index:80;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:9px 10px 9px 16px;
+      border-radius:999px;
+      background:var(--green);
+      color:#fff;
+      box-shadow:0 18px 46px rgba(15,79,60,.25);
+      opacity:0;
+      transform:translateY(18px);
+      pointer-events:none;
+      transition:opacity .22s ease, transform .22s ease;
+    }
+
+    .sticky-cta.is-visible{
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:auto;
+    }
+
+    .sticky-cta span{
+      font-size:.82rem;
+      font-weight:800;
+    }
+
+    .sticky-cta a{
+      min-width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--mint);
+      color:#0b3c2d;
+      font-size:1.15rem;
+      font-weight:900;
+    }
+
+    footer{
+      padding:32px 0 110px;
+      color:var(--muted);
+      font-size:.8rem;
+    }
+
+    @media(min-width:700px){
+      .container{width:min(calc(100% - 56px),var(--max))}
+      .hero-wrap{padding-bottom:220px}
+      .hero{padding:70px 0 64px}
+      .activation-shell{margin-top:-154px}
+      .activation-grid{grid-template-columns:.8fr 1.2fr}
+      .activation-preview{min-height:390px}
+      .activation-form{padding:38px}
+      .need-grid{grid-template-columns:repeat(4,1fr)}
+      .activation-action{grid-template-columns:1fr auto;align-items:end}
+      .activation-action .button{min-width:210px}
+      .trust-row{grid-template-columns:repeat(3,1fr)}
+      .trust-item{border-bottom:0;border-right:1px solid var(--line)}
+      .trust-item:last-child{border-right:0}
+      .benefit-layout{grid-template-columns:.9fr 1.1fr;gap:60px}
+      .steps{grid-template-columns:repeat(3,1fr)}
+      .real-layout{grid-template-columns:1fr 1.05fr}
+      .cta-grid{grid-template-columns:1fr .95fr}
+      .faq-layout{grid-template-columns:.7fr 1.3fr}
+    }
+
+    @media(min-width:1000px){
+      .nav{min-height:92px}
+      .hero{padding:86px 0 70px}
+      .section{padding:110px 0}
+      .activation-form{padding:44px 48px}
+      .visual-card{min-height:540px}
+      .step{min-height:270px;padding:34px}
+      .real-card{padding:42px}
+      .cta-panel{padding:48px 56px}
+      .sticky-cta{
+        left:auto;
+        right:28px;
+        bottom:24px;
+        width:310px;
+        padding-left:22px;
+      }
+      footer{padding-bottom:42px}
+    }
+  
+    .blurred{
+      filter:blur(6px);
+      user-select:none;
+      opacity:.82;
+    }
+
+    .locked-aid{
+      position:relative;
+      overflow:hidden;
+    }
+
+    .micro-trust{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:8px 18px;
+      margin-top:18px;
+      color:#6b7871;
+      font-size:.78rem;
+      font-weight:700;
+    }
+
+    .proof-stack{
+      display:grid;
+      gap:12px;
+      align-content:center;
+    }
+
+    .proof-line{
+      padding:20px 22px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:#fff;
+    }
+
+    .proof-line strong{
+      display:block;
+      margin-bottom:7px;
+      font-size:1.05rem;
+      line-height:1.35;
+      letter-spacing:-.02em;
+    }
+
+    .proof-line span{
+      color:var(--muted);
+      font-size:.75rem;
+      font-weight:700;
+    }
+
+    .hero h1,
+    .section-title,
+    .real-card h2,
+    .cta-panel h2,
+    .activation-form h2,
+    .faq-title h2{
+      font-weight:700;
+    }
+
+    .hero p,
+    .section-copy,
+    .activation-form > p{
+      font-weight:400;
+    }
+
+  
+    /* Mobile-first proportion pass */
+    @media (max-width:699px){
+      .container{
+        width:min(calc(100% - 28px),var(--max));
+      }
+
+      .hero-wrap{
+        padding-bottom:150px;
+      }
+
+      .nav{
+        min-height:64px;
+      }
+
+      .brand{
+        font-size:1.08rem;
+      }
+
+      .hero{
+        padding:30px 0 48px;
+      }
+
+      .hero h1{
+        max-width:360px;
+        margin-bottom:18px;
+        font-size:clamp(2.22rem,10.3vw,2.62rem);
+        line-height:.98;
+        letter-spacing:-.058em;
+      }
+
+      .hero p{
+        max-width:330px;
+        font-size:.94rem;
+        line-height:1.45;
+      }
+
+      .activation-shell{
+        margin-top:-108px;
+      }
+
+      .activation{
+        border-width:8px;
+        border-radius:24px;
+      }
+
+      .activation-preview{
+        min-height:0;
+        padding:16px;
+      }
+
+      .mini-board{
+        width:100%;
+        max-width:310px;
+        padding:12px;
+        border-radius:18px;
+        transform:none;
+      }
+
+      .mini-board-top{
+        margin-bottom:8px;
+        font-size:.72rem;
+      }
+
+      .verified{
+        padding:4px 6px;
+        font-size:.57rem;
+      }
+
+      .mini-aid{
+        padding:8px 0;
+      }
+
+      .mini-aid-head{
+        gap:8px;
+        margin-bottom:6px;
+      }
+
+      .mini-aid strong{
+        max-width:190px;
+        font-size:.72rem;
+        line-height:1.2;
+      }
+
+      .mini-aid .amount{
+        font-size:.69rem;
+      }
+
+      .chips{
+        gap:4px;
+      }
+
+      .chip{
+        padding:4px 6px;
+        font-size:.56rem;
+      }
+
+      .activation-form{
+        padding:24px 18px 22px;
+      }
+
+      .kicker{
+        margin-bottom:8px;
+        font-size:.65rem;
+      }
+
+      .activation-form h2{
+        margin-bottom:18px;
+        font-size:1.86rem;
+        line-height:1.02;
+      }
+
+      .activation-form > p{
+        margin-bottom:18px;
+        font-size:.9rem;
+        line-height:1.45;
+      }
+
+      .field-label{
+        margin-bottom:8px;
+        font-size:.8rem;
+      }
+
+      .need-grid{
+        gap:8px;
+        margin-bottom:12px;
+      }
+
+      .need-option label{
+        min-height:48px;
+        padding:8px;
+        border-radius:12px;
+        font-size:.76rem;
+        line-height:1.2;
+      }
+
+      .activation-action{
+        gap:6px;
+      }
+
+      #activationResult{
+        min-height:18px !important;
+        font-size:.78rem;
+      }
+
+      .button{
+        min-height:50px;
+        padding-inline:18px;
+        font-size:.83rem;
+      }
+
+      .micro-trust{
+        gap:5px 12px;
+        margin-top:14px;
+        padding-inline:4px;
+        font-size:.68rem;
+        line-height:1.35;
+      }
+
+      .section{
+        padding:68px 0;
+      }
+
+      .section-head{
+        margin-bottom:28px;
+      }
+
+      .section-kicker{
+        margin-bottom:9px;
+        font-size:.66rem;
+      }
+
+      .section-title{
+        margin-bottom:13px;
+        font-size:clamp(2.2rem,10vw,2.85rem);
+        line-height:1;
+        letter-spacing:-.055em;
+      }
+
+      .section-copy{
+        font-size:.94rem;
+        line-height:1.5;
+      }
+
+      .benefit-layout{
+        gap:30px;
+      }
+
+      .visual-card{
+        min-height:300px;
+        padding:18px;
+        border-radius:24px;
+      }
+
+      .quote-panel{
+        padding:20px;
+        border-radius:20px;
+      }
+
+      .quote-panel blockquote{
+        margin-bottom:13px;
+        font-size:1.3rem;
+        line-height:1.16;
+      }
+
+      .quote-panel cite{
+        font-size:.72rem;
+      }
+
+      .benefit-item{
+        grid-template-columns:36px 1fr;
+        gap:12px;
+        padding:18px 0;
+      }
+
+      .num{
+        width:34px;
+        height:34px;
+        font-size:.8rem;
+      }
+
+      .benefit-item h3{
+        margin-bottom:4px;
+        font-size:1.08rem;
+      }
+
+      .benefit-item p{
+        font-size:.87rem;
+        line-height:1.45;
+      }
+
+      .steps{
+        gap:10px;
+      }
+
+      .step{
+        min-height:0;
+        padding:22px 20px;
+        border-radius:22px;
+      }
+
+      .step .step-num{
+        width:38px;
+        height:38px;
+        margin-bottom:22px;
+        font-size:.8rem;
+      }
+
+      .step h3{
+        margin-bottom:8px;
+        font-size:1.16rem;
+      }
+
+      .step p{
+        font-size:.87rem;
+        line-height:1.45;
+      }
+
+      .real-layout{
+        gap:16px;
+      }
+
+      .proof-stack{
+        gap:9px;
+      }
+
+      .proof-line{
+        padding:16px 17px;
+        border-radius:17px;
+      }
+
+      .proof-line strong{
+        margin-bottom:5px;
+        font-size:.93rem;
+      }
+
+      .proof-line span{
+        font-size:.68rem;
+      }
+
+      .real-card{
+        padding:24px 20px;
+        border-radius:24px;
+      }
+
+      .real-card h2{
+        margin-bottom:14px;
+        font-size:2.38rem;
+      }
+
+      .real-card > p{
+        font-size:.92rem;
+        line-height:1.5;
+      }
+
+      .ticks{
+        gap:12px;
+        margin-top:22px;
+      }
+
+      .tick{
+        gap:9px;
+        font-size:.86rem;
+      }
+
+      .cta-panel{
+        padding:26px 20px;
+        border-radius:26px;
+      }
+
+      .cta-grid{
+        gap:22px;
+      }
+
+      .cta-panel h2{
+        margin-bottom:12px;
+        font-size:2.48rem;
+      }
+
+      .cta-panel p{
+        font-size:.92rem;
+      }
+
+      .price-pill{
+        margin:6px 0 18px;
+        font-size:.74rem;
+      }
+
+      .cta-preview{
+        min-height:250px;
+        padding:16px;
+        border-radius:22px;
+      }
+
+      .faq-layout{
+        gap:24px;
+      }
+
+      .faq-title h2{
+        margin-bottom:12px;
+        font-size:2.65rem;
+      }
+
+      .faq-title p{
+        font-size:.9rem;
+      }
+
+      details{
+        padding:18px 0;
+      }
+
+      summary{
+        gap:12px;
+        font-size:.92rem;
+        line-height:1.35;
+      }
+
+      summary::after{
+        width:34px;
+        height:34px;
+        flex-basis:34px;
+      }
+
+      details p{
+        margin-right:46px;
+        font-size:.84rem;
+      }
+
+      .sticky-cta{
+        left:10px;
+        right:10px;
+        bottom:10px;
+        min-height:56px;
+        padding:7px 8px 7px 15px;
+      }
+
+      .sticky-cta span{
+        max-width:275px;
+        font-size:.78rem;
+        line-height:1.2;
+      }
+
+      .sticky-cta a{
+        width:40px;
+        height:40px;
+        flex:0 0 40px;
+      }
+
+      footer{
+        padding:28px 0 94px;
+        font-size:.72rem;
+        line-height:1.45;
+      }
+    }
+
+  
+    /* Comparison / Why Tribartist */
+    .comparison-head{
+      max-width:920px;
+    }
+
+    .comparison-card{
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:#fff;
+      box-shadow:0 18px 48px rgba(29,52,40,.07);
+    }
+
+    .comparison-grid{
+      display:grid;
+      grid-template-columns:1.05fr 1fr 1fr;
+      border-top:1px solid var(--line);
+    }
+
+    .comparison-grid:first-child{
+      border-top:0;
+    }
+
+    .comparison-grid-head{
+      background:#f1f4f1;
+    }
+
+    .comparison-feature-label,
+    .comparison-col-title,
+    .comparison-feature,
+    .comparison-cell{
+      padding:20px 22px;
+    }
+
+    .comparison-feature-label{
+      color:#7b8780;
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      display:flex;
+      align-items:center;
+    }
+
+    .comparison-col-title{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      font-size:.88rem;
+      font-weight:850;
+      border-left:1px solid var(--line);
+    }
+
+    .comparison-with{
+      background:#eaf6ee;
+      color:#155f40;
+    }
+
+    .comparison-without{
+      background:#f8eeee;
+      color:#8b4747;
+    }
+
+    .comparison-feature{
+      display:flex;
+      align-items:center;
+      font-weight:850;
+      letter-spacing:-.015em;
+      background:#fbfcfb;
+    }
+
+    .comparison-cell{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      border-left:1px solid var(--line);
+      font-size:.9rem;
+      line-height:1.4;
+    }
+
+    .comparison-cell.bad{
+      color:#6e7470;
+      background:#fff;
+    }
+
+    .comparison-cell.good{
+      color:#244c39;
+      background:#fbfefc;
+      font-weight:680;
+    }
+
+    .comparison-icon{
+      width:24px;
+      height:24px;
+      flex:0 0 24px;
+      display:inline-grid;
+      place-items:center;
+      border-radius:50%;
+      font-size:.92rem;
+      font-weight:900;
+      line-height:1;
+    }
+
+    .comparison-icon.red{
+      background:#f5dddd;
+      color:#b44f4f;
+    }
+
+    .comparison-icon.green{
+      background:#dff3e6;
+      color:#228054;
+    }
+
+    .comparison-proof{
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+      margin-top:18px;
+      padding:16px 18px;
+      border-left:3px solid #2ba26f;
+      color:#263b31;
+      background:transparent;
+    }
+
+    .comparison-proof strong{
+      font-size:.95rem;
+      letter-spacing:-.015em;
+    }
+
+    .comparison-proof span{
+      color:var(--muted);
+      font-size:.75rem;
+      font-weight:700;
+    }
+
+    @media(max-width:699px){
+      .comparison-card{
+        border-radius:22px;
+      }
+
+      .comparison-grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .comparison-feature-label{
+        display:none;
+      }
+
+      .comparison-grid-head .comparison-col-title{
+        border-left:0;
+      }
+
+      .comparison-grid-head .comparison-with{
+        border-left:1px solid var(--line);
+      }
+
+      .comparison-feature{
+        grid-column:1 / -1;
+        padding:14px 15px 8px;
+        border-bottom:0;
+        background:#f8faf8;
+        font-size:.78rem;
+        color:#4f5c55;
+        text-transform:uppercase;
+        letter-spacing:.055em;
+      }
+
+      .comparison-cell{
+        min-height:104px;
+        padding:14px 12px;
+        font-size:.78rem;
+        line-height:1.36;
+      }
+
+      .comparison-cell.bad{
+        border-left:0;
+      }
+
+      .comparison-cell.good{
+        border-left:1px solid var(--line);
+      }
+
+      .comparison-col-title{
+        justify-content:center;
+        padding:15px 9px;
+        font-size:.76rem;
+        text-align:center;
+      }
+
+      .comparison-icon{
+        width:21px;
+        height:21px;
+        flex-basis:21px;
+        font-size:.78rem;
+      }
+
+      .comparison-proof{
+        margin-top:14px;
+        padding:13px 14px;
+      }
+
+      .comparison-proof strong{
+        font-size:.86rem;
+      }
+
+      .comparison-proof span{
+        font-size:.68rem;
+      }
+    }
+
+  
+    .comparison-emphasis-bad{
+      background:#fff2f2 !important;
+      color:#744747 !important;
+    }
+
+    .comparison-emphasis-good{
+      background:#e5f7eb !important;
+      color:#154e32 !important;
+    }
+
+    .comparison-emphasis-bad strong,
+    .comparison-emphasis-good strong{
+      font-size:.96rem;
+      letter-spacing:-.015em;
+    }
+
+    @media(max-width:699px){
+      .comparison-emphasis-bad strong,
+      .comparison-emphasis-good strong{
+        font-size:.82rem;
+      }
+    }
+
+  
+    /* Testimonials */
+    .testimonials-section{
+      background:#f6f8f5;
+    }
+
+    .testimonials-head{
+      max-width:900px;
+    }
+
+    .testimonial-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .testimonial-card{
+      min-height:255px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:26px;
+      border:1px solid var(--line);
+      border-radius:26px;
+      background:#fff;
+      box-shadow:0 14px 34px rgba(24,45,35,.06);
+    }
+
+    .testimonial-card-featured{
+      background:var(--green);
+      color:#fff;
+      border-color:var(--green);
+    }
+
+    .testimonial-stars{
+      margin-bottom:20px;
+      color:#f3b447;
+      font-size:1.05rem;
+      letter-spacing:.12em;
+      line-height:1;
+    }
+
+    .testimonial-card blockquote{
+      margin:0 0 24px;
+      font-size:1.18rem;
+      line-height:1.38;
+      letter-spacing:-.028em;
+      font-weight:700;
+    }
+
+    .testimonial-meta{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+    }
+
+    .testimonial-card-featured .testimonial-meta{
+      border-color:rgba(255,255,255,.18);
+    }
+
+    .testimonial-meta strong{
+      font-size:.82rem;
+    }
+
+    .testimonial-meta span{
+      color:var(--muted);
+      font-size:.72rem;
+      font-weight:650;
+    }
+
+    .testimonial-card-featured .testimonial-meta span{
+      color:#cfe1d8;
+    }
+
+    .testimonial-cta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      margin-top:18px;
+      padding:18px 20px;
+      border:1px solid #cfe1d6;
+      border-radius:22px;
+      background:#eaf6ee;
+    }
+
+    .testimonial-cta > div{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+
+    .testimonial-cta strong{
+      color:var(--green);
+      font-size:.88rem;
+    }
+
+    .testimonial-cta span{
+      color:#53655c;
+      font-size:.82rem;
+    }
+
+    @media(max-width:900px){
+      .testimonial-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media(max-width:699px){
+      .testimonial-grid{
+        grid-template-columns:1fr;
+        gap:10px;
+      }
+
+      .testimonial-card{
+        min-height:0;
+        padding:20px 18px;
+        border-radius:20px;
+      }
+
+      .testimonial-stars{
+        margin-bottom:14px;
+        font-size:.95rem;
+      }
+
+      .testimonial-card blockquote{
+        margin-bottom:18px;
+        font-size:1rem;
+        line-height:1.42;
+      }
+
+      .testimonial-meta{
+        padding-top:13px;
+      }
+
+      .testimonial-cta{
+        align-items:stretch;
+        flex-direction:column;
+        gap:14px;
+        padding:16px;
+        border-radius:18px;
+      }
+
+      .testimonial-cta .button{
+        width:100%;
+      }
+    }
+
+  
+    @media(max-width:699px){
+      .cta-panel .cta-grid > div:first-child{
+        display:flex;
+        flex-direction:column;
+      }
+
+      .cta-panel .section-kicker{
+        order:1;
+      }
+
+      .cta-panel h2{
+        order:2;
+      }
+
+      .cta-panel p{
+        order:3;
+      }
+
+      .cta-panel .price-pill{
+        order:4;
+      }
+
+      .cta-panel .button-mint{
+        order:5;
+        margin-top:0;
+      }
+    }
+
+  
+    .comparison-proof-stars{
+      color:#f3b447;
+      font-size:.95rem;
+      letter-spacing:.12em;
+      line-height:1;
+      margin-bottom:3px;
+    }
+
+  
+    .cta-mobile-after-image{
+      display:none;
+    }
+
+    @media(max-width:699px){
+      .cta-panel .cta-grid > div:first-child > .button-mint{
+        display:none;
+      }
+
+      .cta-mobile-after-image{
+        display:inline-flex;
+        width:100%;
+        order:3;
+        margin-top:0;
+      }
+
+      .cta-panel .cta-grid{
+        display:flex;
+        flex-direction:column;
+      }
+
+      .cta-panel .cta-grid > div:first-child{
+        order:1;
+      }
+
+      .cta-panel .cta-preview{
+        order:2;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- HERO -->
+  <div class="hero-wrap">
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="#">TRIBARTIST</a>
+      </nav>
+
+      <section class="hero">
+        <h1>
+          Trouve les aides qui peuvent
+          <span class="accent">financer ton projet</span>
+          en 2 minutes
+        </h1>
+        <p>
+          Les montants, les critères essentiels et les dates sont déjà rassemblés.
+          Tu vois vite ce qui mérite ton attention.
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <!-- BLOC D'ACTIVATION HERO -->
+  <section class="activation-shell" id="commencer">
+    <div class="container">
+      <div class="activation">
+        <div class="activation-grid">
+          <div class="activation-preview" aria-hidden="true">
+            <div class="mini-board">
+              <div class="mini-board-top">
+                <span>Aides musicales</span>
+                <span class="verified">Vérifié 2026</span>
+              </div>
+
+              <div class="mini-aid">
+                <div class="mini-aid-head">
+                  <strong>SACEM — Autoproduction</strong>
+                  <span class="amount">5 000 €</span>
+                </div>
+                <div class="chips">
+                  <span class="chip">5 titres min.</span>
+                  <span class="chip">Après sortie</span>
+                  <span class="chip">Disponible</span>
+                </div>
+              </div>
+
+              <div class="mini-aid locked-aid">
+                <div class="mini-aid-head">
+                  <strong class="blurred">Aide promotion — organisme</strong>
+                  <span class="amount">8 000 € max.</span>
+                </div>
+                <div class="chips blurred">
+                  <span class="chip">Critère principal</span>
+                  <span class="chip">Moment du dépôt</span>
+                  <span class="chip">Structure requise</span>
+                </div>
+              </div>
+
+              <div class="mini-aid locked-aid">
+                <div class="mini-aid-head">
+                  <strong class="blurred">Aide enregistrement — organisme</strong>
+                  <span class="amount">jusqu'à 40 %</span>
+                </div>
+                <div class="chips blurred">
+                  <span class="chip">Critère principal</span>
+                  <span class="chip">Minimum requis</span>
+                  <span class="chip">Moment du dépôt</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="activation-form">
+            <h2>Qu’est-ce que tu veux financer ?</h2>
+            <span class="field-label">Je cherche du budget pour :</span>
+
+            <div class="need-grid" id="needGrid">
+              <div class="need-option">
+                <input type="radio" id="need-production" name="need" value="production">
+                <label for="need-production">Enregistrement</label>
+              </div>
+              <div class="need-option">
+                <input type="radio" id="need-promo" name="need" value="promotion">
+                <label for="need-promo">Promotion</label>
+              </div>
+              <div class="need-option">
+                <input type="radio" id="need-clip" name="need" value="clip">
+                <label for="need-clip">Clip / image</label>
+              </div>
+              <div class="need-option">
+                <input type="radio" id="need-global" name="need" value="global">
+                <label for="need-global">Projet global</label>
+              </div>
+            </div>
+
+            <div class="activation-action">
+              <div>
+                <div id="activationResult" style="font-weight:800;color:var(--green);min-height:24px"></div>
+
+              </div>
+              <button class="button button-dark" id="activationButton" type="button">
+                Voir les aides pour ce besoin →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="micro-trust">
+        <span>✓ Vérifié 2026</span>
+        <span>✓ Sources officielles</span>
+        <span>✓ 9,99 € · paiement unique</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- POURQUOI TRIBARTIST -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head comparison-head">
+        <div class="section-kicker">Pourquoi Tribartist</div>
+        <h2 class="section-title">Ce que ça change <span class="accent" style="color:#2ba26f">concrètement</span> pour toi.</h2>
+        <p class="section-copy">
+          La différence se voit immédiatement : moins de recherche, moins de fausses pistes et moins de risque de découvrir une aide trop tard.
+        </p>
+      </div>
+
+      <div class="comparison-card" aria-label="Comparaison sans Tribartist et avec Tribartist">
+        <div class="comparison-grid comparison-grid-head">
+          <div class="comparison-feature-label">Ce qui te bloque</div>
+          <div class="comparison-col-title comparison-without">
+            <span class="comparison-icon red">×</span>
+            Sans Tribartist
+          </div>
+          <div class="comparison-col-title comparison-with">
+            <span class="comparison-icon green">✓</span>
+            Avec Tribartist
+          </div>
+        </div>
+
+        <div class="comparison-grid">
+          <div class="comparison-feature">Trouver les aides</div>
+          <div class="comparison-cell bad">
+            <span class="comparison-icon red">×</span>
+            <span>Tu galères entre Google, ChatGPT et les sites des organismes.</span>
+          </div>
+          <div class="comparison-cell good">
+            <span class="comparison-icon green">✓</span>
+            <span>La liste est déjà préparée et rassemblée au même endroit.</span>
+          </div>
+        </div>
+
+        <div class="comparison-grid">
+          <div class="comparison-feature">Savoir quoi chercher</div>
+          <div class="comparison-cell bad">
+            <span class="comparison-icon red">×</span>
+            <span>Tu tapes « subvention artiste » sans savoir quels dispositifs existent vraiment.</span>
+          </div>
+          <div class="comparison-cell good">
+            <span class="comparison-icon green">✓</span>
+            <span>Tu vois directement les aides qui peuvent concerner ton projet.</span>
+          </div>
+        </div>
+
+        <div class="comparison-grid">
+          <div class="comparison-feature">Éviter une aide inutile</div>
+          <div class="comparison-cell bad">
+            <span class="comparison-icon red">×</span>
+            <span>Tu lis le site puis découvres qu’un critère essentiel te bloque.</span>
+          </div>
+          <div class="comparison-cell good">
+            <span class="comparison-icon green">✓</span>
+            <span>Les prérequis principaux sont visibles avant de cliquer.</span>
+          </div>
+        </div>
+
+        <div class="comparison-grid">
+          <div class="comparison-feature">Ne pas rater la date limite</div>
+          <div class="comparison-cell bad">
+            <span class="comparison-icon red">×</span>
+            <span>Tu découvres l’aide quand la date limite est passée ou arrive à son terme.</span>
+          </div>
+          <div class="comparison-cell good">
+            <span class="comparison-icon green">✓</span>
+            <span>La date limite ressort immédiatement pour savoir si tu dois agir maintenant.</span>
+          </div>
+        </div>
+
+        <div class="comparison-grid">
+          <div class="comparison-feature">Découvrir ce qui peut être financé</div>
+          <div class="comparison-cell bad">
+            <span class="comparison-icon red">×</span>
+            <span>Tu passes à côté d’une aide simplement parce que tu ignores qu’elle existe.</span>
+          </div>
+          <div class="comparison-cell good">
+            <span class="comparison-icon green">✓</span>
+            <span>Tu découvres aussi des possibilités que tu n’aurais pas pensé à chercher, comme certaines aides à la promotion.</span>
+          </div>
+        </div>
+
+        <div class="comparison-grid">
+          <div class="comparison-feature">Trouver la bonne source</div>
+          <div class="comparison-cell bad">
+            <span class="comparison-icon red">×</span>
+            <span>Tu recherches encore le bon organisme, la bonne page et le bon règlement.</span>
+          </div>
+          <div class="comparison-cell good">
+            <span class="comparison-icon green">✓</span>
+            <span>Le lien vers la source officielle est déjà associé à l’aide.</span>
+          </div>
+        </div>
+
+        <div class="comparison-grid comparison-grid-last">
+          <div class="comparison-feature">Ton temps</div>
+          <div class="comparison-cell bad comparison-emphasis-bad">
+            <span class="comparison-icon red">×</span>
+            <span><strong>Recherche + tri + vérification à ta charge.</strong></span>
+          </div>
+          <div class="comparison-cell good comparison-emphasis-good">
+            <span class="comparison-icon green">✓</span>
+            <span><strong>En 2 minutes, tu vois ce qui mérite ton attention.</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comparison-proof">
+        <div class="comparison-proof-stars" aria-label="5 étoiles">★★★★★</div>
+        <strong>« Moi, ce que tu m’as apporté, c’est un vrai gain de temps. »</strong>
+        <span>— Acheteur du répertoire, auteur-compositeur</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" id="prix">
+    <div class="container">
+      <div class="cta-panel">
+        <div class="cta-grid">
+          <div>
+            <h2>Prends la liste déjà préparée.</h2>
+            <p>
+              Gagne du temps sur la recherche, vois les critères importants plus tôt
+              et garde les dates limites sous les yeux.
+            </p>
+            <div class="price-pill">9,99 € · paiement unique · accès immédiat</div><br>
+            <a class="button button-mint" href="https://buy.stripe.com/3cI7sK4KedhE1uz6Zu5ZC0f">
+              Trouver les aides à regarder →
+            </a>
+          </div>
+
+          <div class="cta-preview">
+            <div class="mini-board">
+              <div class="mini-board-top">
+                <span>Répertoire 2026</span>
+                <span class="verified">Sources officielles</span>
+              </div>
+              <div class="mini-aid">
+                <div class="mini-aid-head">
+                  <strong>Production / enregistrement</strong>
+                  <span class="amount">Aides disponibles</span>
+                </div>
+                <div class="chips">
+                  <span class="chip">Montant</span>
+                  <span class="chip">Critères</span>
+                  <span class="chip">date limite</span>
+                  <span class="chip">Lien officiel</span>
+                </div>
+              </div>
+              <div class="mini-aid">
+                <div class="mini-aid-head">
+                  <strong>Promotion / marketing</strong>
+                  <span class="amount">Aides disponibles</span>
+                </div>
+                <div class="chips">
+                  <span class="chip">Statut</span>
+                  <span class="chip">Prérequis</span>
+                  <span class="chip">Source</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a class="button button-mint cta-mobile-after-image" href="https://buy.stripe.com/3cI7sK4KedhE1uz6Zu5ZC0f">
+            Trouver les aides à regarder →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- COMMENT ÇA MARCHE -->
+  <section class="section soft-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Moins de recherche. Moins de doute.</div>
+        <h2 class="section-title">Le travail de recherche est déjà fait.</h2>
+        <p class="section-copy">
+          Tu n’as plus à parcourir chaque organisme, décoder chaque page et reconstruire les dates limites toi-même.
+        </p>
+      </div>
+
+      <div class="steps">
+        <article class="step">
+          <div class="step-num">1</div>
+          <h3>Les aides sont déjà rassemblées</h3>
+          <p>Production, promotion, image : tu retrouves les dispositifs utiles dans un seul espace.</p>
+        </article>
+
+        <article class="step">
+          <div class="step-num">2</div>
+          <h3>Les critères importants ressortent</h3>
+          <p>Tu vois immédiatement les prérequis essentiels sans devoir lire tout le règlement pour comprendre si l’aide vaut ton temps.</p>
+        </article>
+
+        <article class="step">
+          <div class="step-num">3</div>
+          <h3>Les dates limites ne se cachent plus</h3>
+          <p>Les dates limites ressortent clairement pour éviter de comprendre trop tard qu’une fenêtre de dépôt arrive à son terme.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERBATIMS + VRAI BENEFICE -->
+  <section class="section">
+    <div class="container">
+      <div class="real-layout">
+        <div class="proof-stack">
+          <div class="proof-line">
+            <strong>« Tu trouves vite l’info, t’as pas à chercher. »</strong>
+            <span>— Acheteuse</span>
+          </div>
+          <div class="proof-line">
+            <strong>« Tu m’as fait gagner du temps. »</strong>
+            <span>— Auteur-compositeur, 20 ans d’expérience</span>
+          </div>
+          <div class="proof-line">
+            <strong>« Tout rassembler au même endroit, ça facilite la tâche. »</strong>
+            <span>— Acheteur</span>
+          </div>
+        </div>
+
+        <div class="real-card">
+          <div class="section-kicker">Le vrai bénéfice</div>
+          <h2>Moins chercher. <span class="accent" style="color:#2ba26f">Moins rater.</span> Plus avancer.</h2>
+          <p>
+            Le répertoire ne garantit pas une subvention. Il t’évite surtout de perdre une opportunité
+            parce que tu ne l’avais pas trouvée, mal comprise ou découverte trop tard.
+          </p>
+
+          <div class="ticks">
+            <div class="tick"><span class="tick-mark">✓</span><span>Tu compares les montants sans ouvrir dix sites.</span></div>
+            <div class="tick"><span class="tick-mark">✓</span><span>Tu vois les critères majeurs avant de cliquer.</span></div>
+            <div class="tick"><span class="tick-mark">✓</span><span>Tu repères les dates limites avant d’être « borderline ».</span></div>
+            <div class="tick"><span class="tick-mark">✓</span><span>Tu gardes les sources officielles comme référence finale.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section soft-section">
+    <div class="container">
+      <div class="faq-layout">
+        <div class="faq-title">
+          <div class="section-kicker">Questions fréquentes</div>
+          <h2>Avant de commencer.</h2>
+          <p>Les réponses essentielles avant d’ouvrir le répertoire.</p>
+        </div>
+
+        <div>
+          <details>
+            <summary>Est-ce que Tribartist garantit que j’obtiendrai une subvention ?</summary>
+            <p>Non. Le répertoire te permet d’identifier et de trier plus vite les dispositifs. La décision appartient toujours à l’organisme financeur.</p>
+          </details>
+
+          <details>
+            <summary>Est-ce que je dois déjà avoir une structure ?</summary>
+            <p>Pas pour consulter le répertoire. Certaines aides exigent toutefois une structure, une affiliation ou une expérience précise : les prérequis principaux sont là pour te le faire voir rapidement.</p>
+          </details>
+
+          <details>
+            <summary>Pourquoi payer si je peux chercher sur Google ou ChatGPT ?</summary>
+            <p>Tu peux faire les recherches toi-même. Le produit est destiné à ceux qui préfèrent payer pour avoir l’information déjà rassemblée, structurée et reliée aux sources officielles.</p>
+          </details>
+
+          <details>
+            <summary>Le répertoire est-il utilisable sur téléphone ?</summary>
+            <p>Oui. Cette version est pensée mobile-first pour éviter le problème du tableau horizontal difficile à lire sur smartphone.</p>
+          </details>
+
+          <details>
+            <summary>Je paie tous les mois ?</summary>
+            <p>Non. Le produit 1 est vendu 9,99 € en paiement unique.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © 2026 Tribartist — Répertoire d’information. Les sources officielles restent la référence avant tout dépôt.
+    </div>
+  </footer>
+
+  <div class="sticky-cta">
+    <span>Donner plus de moyens à mon projet · 9,99 €</span>
+    <a href="https://buy.stripe.com/3cI7sK4KedhE1uz6Zu5ZC0f" aria-label="Donner plus de moyens à mon projet">→</a>
+  </div>
+
+  <script>
+    const stickyCta = document.querySelector('.sticky-cta');
+    const activationShell = document.querySelector('.activation-shell');
+
+    function updateStickyCta(){
+      if (!stickyCta || !activationShell) return;
+      const activationBottom = activationShell.offsetTop + activationShell.offsetHeight;
+      stickyCta.classList.toggle('is-visible', window.scrollY > activationBottom - 120);
+    }
+
+    window.addEventListener('scroll', updateStickyCta, { passive:true });
+    window.addEventListener('resize', updateStickyCta);
+    updateStickyCta();
+
+    const options = document.querySelectorAll('input[name="need"]');
+    const result = document.getElementById('activationResult');
+    const button = document.getElementById('activationButton');
+
+    const labels = {
+      production: "Tu cherches à financer l’enregistrement / la production.",
+      promotion: "Tu cherches à financer la promo / le marketing.",
+      clip: "Tu cherches à financer un clip ou un projet image.",
+      global: "Tu cherches des aides pour plusieurs postes du projet."
+    };
+
+    options.forEach(option => {
+      option.addEventListener('change', () => {
+        result.textContent = labels[option.value];
+      });
+    });
+
+    button.addEventListener('click', () => {
+      const selected = document.querySelector('input[name="need"]:checked');
+      if (!selected) {
+        result.textContent = "Choisis d’abord ce que tu veux financer.";
+        return;
+      }
+      window.location.href = "https://buy.stripe.com/3cI7sK4KedhE1uz6Zu5ZC0f";
+    });
+  </script>
+</body>
+</html>
